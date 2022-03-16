@@ -1,3 +1,3 @@
 npm i -g @quasar/cli
-yarn install
+quasar upgrade
 npx quasar dev
