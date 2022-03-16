@@ -12,6 +12,8 @@ const ESLintPlugin = require("eslint-webpack-plugin");
 
 const { configure } = require("quasar/wrappers");
 
+const enviromentConfiguration = require("./src/utils/enviromentConfig.js");
+
 module.exports = configure(function (ctx) {
   return {
     // https://v2.quasar.dev/quasar-cli-webpack/supporting-ts
@@ -23,7 +25,7 @@ module.exports = configure(function (ctx) {
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://v2.quasar.dev/quasar-cli-webpack/boot-files
-    boot: [],
+    boot: ["firebaseConnection"],
 
     // https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-css
     css: ["app.sass"],
@@ -44,6 +46,9 @@ module.exports = configure(function (ctx) {
 
     // Full list of options: https://v2.quasar.dev/quasar-cli-webpack/quasar-config-js#Property%3A-build
     build: {
+      env: {
+        QENV: enviromentConfiguration(process.env.QENV),
+      },
       vueRouterMode: "hash", // available values: 'hash', 'history'
 
       // transpile: false,
