@@ -31,9 +31,9 @@
       <router-view />
     </q-page-container>
     <q-footer class="bg-secondary" reveal elevated>
-      <q-toolbar>
-        <q-toolbar-title>Footer</q-toolbar-title>
-      </q-toolbar>
+      <p class="text-center q-mt-sm">
+        Copyright ©Alexis Vedrenne - {{ date.getFullYear() }}
+      </p>
     </q-footer>
   </q-layout>
 </template>
@@ -45,11 +45,17 @@ export default defineComponent({
   name: "MainLayout",
   data: function () {
     return {
+      date: new Date(),
       linksList: [
         {
-          title: "Qui suis-je ?",
+          title: "Accueil",
           icon: "home",
           link: "/",
+        },
+        {
+          title: "Qui suis-je ?",
+          icon: "face",
+          link: "about-me",
         },
         {
           title: "Passion",
