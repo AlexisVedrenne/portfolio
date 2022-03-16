@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 import "firebase/auth";
 
 /**
@@ -9,4 +10,8 @@ import "firebase/auth";
  */
 export const fBInit = (config) => {
   return initializeApp(config);
+};
+
+export const fbAnalytic = (app) => {
+  return getAnalytics(app);
 };
