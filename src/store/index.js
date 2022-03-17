@@ -2,6 +2,8 @@ import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 
 import project from "./project";
+import skill from "./skill";
+import auth from "./auth";
 
 /*
  * If not building with SSR mode, you can
@@ -16,6 +18,8 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     modules: {
       project,
+      skill,
+      auth,
     },
   });
 
