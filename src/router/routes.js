@@ -11,6 +11,13 @@ const routes = [
   // Always leave this as last one,
   // but you can also remove it
   {
+    path: "/admin",
+    component: () => import("layouts/MainLayout.vue"),
+    children: [
+      { path: "login", component: () => import("pages/admin/LoginAdmin.vue") },
+    ],
+  },
+  {
     path: "/:catchAll(.*)*",
     component: () => import("layouts/MainLayout.vue"),
     children: [

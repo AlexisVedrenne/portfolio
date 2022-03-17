@@ -1,6 +1,15 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import "firebase/compat/auth";
+import "firebase/compat/firestore";
+
+/**
+ * Returns Firebase's auth service
+ * https://firebase.google.com/docs/reference/js/firebase.auth.html#callable
+ * @returns {Auth} - The Firebase Auth service interface
+ */
+export const auth = () => {
+  return firebase.auth();
+};
 
 /**
  * Convenience method to initialize firebase app
@@ -9,9 +18,9 @@ import "firebase/auth";
  * @returns {App} - Creates and initializes a Firebase app instance.
  */
 export const fBInit = (config) => {
-  return initializeApp(config);
+  return firebase.initializeApp(config);
 };
 
 export const fbAnalytic = (app) => {
-  return getAnalytics(app);
+  return firebase.getAnalytics(app);
 };

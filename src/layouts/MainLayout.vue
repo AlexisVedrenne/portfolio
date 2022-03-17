@@ -15,7 +15,6 @@
             :name="link.title"
             :label="link.title"
             class="hn-link"
-            :active="active"
             active-class="secondary"
           >
             <q-item-section avatar class="items-center">
