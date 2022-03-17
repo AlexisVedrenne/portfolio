@@ -1,5 +1,5 @@
 <template>
-  <q-form @submit="logIn">
+  <q-form @submit="logIn" v-if="user">
     <div class="container q-t-sm">
       <h5 class="text-center">Entrer vos informations de connexion</h5>
       <div class="row justify-center">
@@ -12,7 +12,8 @@
             lazy-rules
             :rules="[
               (val) =>
-                (val.indexOf('@') && val.indexOf('.')) || 'Adresse email invalide !',
+                (val && val.indexOf('@') && val.indexOf('.')) ||
+                'Adresse email invalide !',
             ]"
           >
             <template v-slot:prepend>
@@ -63,29 +64,19 @@ export default {
       },
       loading: false,
       $q: useQuasar(),
+      user: true,
     };
+  },
+  mounted() {
+    if (this.$q.sessionStorage.getItem("user")) {
+      this.user = false;
+    }
   },
   methods: {
     logIn() {
       this.loading = true;
       let res = this.$store.dispatch("singIn", { infos: this.infos });
-      console.log(res);
       this.loading = false;
-      if (res == true) {
-        this.$q.notify({
-          color: "red-5",
-          textColor: "white",
-          icon: "warning",
-          message: "Information de connexion invalide !",
-        });
-      } else {
-        this.$q.notify({
-          color: "green-4",
-          textColor: "white",
-          icon: "cloud_done",
-          message: "Information de connexion correct !",
-        });
-      }
     },
   },
 };

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h6>{{ user }}</h6>
     <h6>{{ label }}</h6>
     <q-input v-model="label"></q-input>
     <q-btn @click="addProject">Ajouter au projets</q-btn>
@@ -21,10 +22,12 @@ export default {
     return {
       label: "",
       projects: [],
+      user: null,
     };
   },
   async mounted() {
     this.projects = this.$store.getters.getProjects;
+    console.log(this.$store.getters.getCurrentUser);
   },
   methods: {
     addProject() {
