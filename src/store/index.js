@@ -2,6 +2,7 @@ import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
 
 import project from "./project";
+
 /*
  * If not building with SSR mode, you can
  * directly export the Store instantiation;
