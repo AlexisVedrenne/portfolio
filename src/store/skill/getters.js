@@ -1,4 +1,3 @@
-/*
-export function someGetter (state) {
+export function getAllSkilles(state) {
+  return state.skills;
 }
-*/

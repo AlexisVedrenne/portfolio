@@ -1,40 +1,41 @@
 <template>
   <div>
-    <h6>{{ user }}</h6>
-    <h6>{{ label }}</h6>
-    <q-input v-model="label"></q-input>
-    <q-btn @click="addProject">Ajouter au projets</q-btn>
-    <div v-if="projects">
-      <div v-for="(project, index) in projects" :key="index">
-        <h1>{{ project }}</h1>
+    <div class="container">
+      <div class="row justify-center">
+        <div class="col-4 q-mr-xl">
+          <FormSkill :skill="skill" />
+        </div>
+        <div class="col-4">
+          <h6 class="text-center">Prévisualisation de la compétence</h6>
+          <q-scroll-area style="height: 400px">
+            <div style="height: 100px"></div>
+            <SkillCard :skill="skill" />
+            <div style="height: 200px"></div>
+          </q-scroll-area>
+        </div>
       </div>
-    </div>
-    <div v-else>
-      <h5>Aucun projet</h5>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import FormSkill from "src/components/skill/FormSkill.vue";
+import SkillCard from "src/components/skill/SkillCard.vue";
 export default {
+  name: "addSkill",
+  components: {
+    FormSkill,
+    SkillCard,
+  },
   data() {
     return {
-      label: "",
-      projects: [],
-      user: null,
+      skill: {
+        label: null,
+        type: null,
+        level: 0.0,
+        image: null,
+      },
     };
-  },
-  async mounted() {
-    this.projects = this.$store.getters.getProjects;
-    console.log(this.$store.getters.getCurrentUser);
-  },
-  methods: {
-    addProject() {
-      this.$store.dispatch("createProject", {
-        project: this.label,
-      });
-    },
   },
 };
 </script>
