@@ -3,18 +3,41 @@ const routes = [
     path: "/",
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "", component: () => import("pages/IndexPage.vue") },
-      { path: "about-me", component: () => import("pages/AboutMe.vue") },
+      {
+        name: "home",
+        path: "",
+        component: () => import("pages/IndexPage.vue"),
+      },
+      {
+        name: "aboutMe",
+        path: "about-me",
+        component: () => import("pages/AboutMe.vue"),
+      },
+      {
+        name: "skills",
+        path: "my-skills",
+        component: () => import("pages/OwnSkills.vue"),
+      },
     ],
   },
 
   // Always leave this as last one,
   // but you can also remove it
   {
-    path: "/admin",
+    name: "login",
+    path: "/login",
+    component: () => import("pages/admin/LoginAdmin.vue"),
+  },
+  {
+    path: "/admin/",
+    meta: { mustBeLogged: true },
     component: () => import("layouts/MainLayout.vue"),
     children: [
-      { path: "login", component: () => import("pages/admin/LoginAdmin.vue") },
+      {
+        name: "addSkill",
+        path: "add-skill",
+        component: () => import("pages/admin/skill/AddSkill.vue"),
+      },
     ],
   },
   {

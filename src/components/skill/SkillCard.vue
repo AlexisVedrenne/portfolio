@@ -10,7 +10,7 @@
 
             <q-card-section>
               <div class="text-overline">
-                Compétence de type {{ skil.type }}
+                <q-badge color="secondary" :label="skil.type" />
               </div>
               <q-linear-progress
                 size="25px"
@@ -36,6 +36,7 @@
               </q-linear-progress>
               <div class="row justify-center q-mt-sm">
                 <q-btn
+                  outline
                   color="secondary"
                   :label="'Voir les projets : ' + skil.label"
                 ></q-btn>

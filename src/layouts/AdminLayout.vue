@@ -3,9 +3,8 @@
     <q-header reveal elevated>
       <q-toolbar inset>
         <q-toolbar-title
-          ><strong>Alexis Vedrenne</strong> Portfolio</q-toolbar-title
+          ><strong>Administration</strong> Portfolio</q-toolbar-title
         >
-        <p>Etudiant en cyle ingéniérie | Chef de projet SI</p>
       </q-toolbar>
       <q-toolbar class="row justify-center secon">
         <q-list class="secondary row justify-center">
@@ -28,14 +27,7 @@
       </q-toolbar>
     </q-header>
 
-    <q-page-container>
-      <router-view />
-    </q-page-container>
-    <q-footer class="bg-secondary" reveal elevated>
-      <p class="text-center q-mt-sm">
-        Copyright ©Alexis Vedrenne - {{ date.getFullYear() }}
-      </p>
-    </q-footer>
+    <q-page-container> <router-view /> </q-page-container>
   </q-layout>
 </template>
 
@@ -51,27 +43,22 @@ export default defineComponent({
         {
           title: "Accueil",
           icon: "home",
-          link: { name: "home" },
+          link: { name: "adminHome" },
         },
         {
-          title: "Qui suis-je ?",
-          icon: "face",
-          link: { name: "aboutMe" },
-        },
-        {
-          title: "Mes compétences",
+          title: "Comptétence",
           icon: "workspace_premium",
-          link: { name: "skills" },
+          link: { name: "addSkill" },
         },
         {
-          title: "Mes projets",
+          title: "Passion",
+          icon: "favorite",
+          link: { name: "hobies" },
+        },
+        {
+          title: "Projets",
           icon: "folder",
-          link: { name: "projects" },
-        },
-        {
-          title: "Expériences professionnelles",
-          icon: "stacked_line_chart",
-          link: { name: "experience" },
+          link: { name: "addProject" },
         },
       ],
     };
