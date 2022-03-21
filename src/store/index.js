@@ -4,6 +4,7 @@ import { createStore } from "vuex";
 import project from "./project";
 import skill from "./skill";
 import auth from "./auth";
+import image from "./image";
 
 /*
  * If not building with SSR mode, you can
@@ -20,6 +21,7 @@ export default store(function (/* { ssrContext } */) {
       project,
       skill,
       auth,
+      image,
     },
   });
 

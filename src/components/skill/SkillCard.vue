@@ -4,7 +4,7 @@
       <div class="row justify-center">
         <div class="col">
           <q-card class="my-card">
-            <q-parallax :height="100" :width="100" :src="skil.image">
+            <q-parallax :height="150" :width="100" :src="skil.image">
               <h1 class="text-dark">{{ skil.label }}</h1>
             </q-parallax>
 
@@ -27,11 +27,7 @@
                 "
               >
                 <div class="absolute-full flex flex-center">
-                  <q-badge
-                    color="white"
-                    text-color="accent"
-                    :label="skil.level + '%'"
-                  />
+                  <q-badge color="white" text-color="accent" :label="skil.level + '%'" />
                 </div>
               </q-linear-progress>
               <div class="row justify-center q-mt-sm">

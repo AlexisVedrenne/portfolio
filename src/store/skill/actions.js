@@ -1,11 +1,11 @@
-import firebasebd from "src/boot/FireBase";
+import fire from "src/boot/FireBase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
 
 export async function fetchAllSkills({ commit }) {
   try {
-    const res = await getDocs(collection(firebasebd, "skills"));
+    const res = await getDocs(collection(fire.firebasebd, "skills"));
     let skills = [];
     res.forEach((skill) => {
       skills.push(skill.data());

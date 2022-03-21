@@ -1,5 +1,5 @@
 <template>
-  <q-parallax>
+  <q-parallax style="height: 350px">
     <template v-slot:media>
       <img src="~assets/baniereHome.png" />
     </template>
@@ -14,11 +14,19 @@
           right: 0,
         }"
       >
-        <img src="~assets/logome.png" style="width: 150px; height: 150px" />
-        <div class="text-h3 text-secondary text-center">Bienvenue sur mon PortFolio</div>
-        <div class="text-h6 text-secondary text-center">
-          Dévéloppeur, chef de projet SI
-        </div>
+        <transition-group
+          appear
+          enter-active-class="animated bounceIn"
+          leave-active-class="animated bounceOut"
+        >
+          <img src="~assets/logome.png" style="width: 150px; height: 150px" />
+          <div class="text-h3 text-secondary text-center">
+            Bienvenue sur mon PortFolio
+          </div>
+          <div class="text-h6 text-secondary text-center">
+            Dévéloppeur, chef de projet SI
+          </div>
+        </transition-group>
       </div>
     </template>
   </q-parallax>

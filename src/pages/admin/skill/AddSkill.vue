@@ -9,7 +9,7 @@
           <h6 class="text-center">Prévisualisation de la compétence</h6>
           <q-scroll-area style="height: 400px">
             <div style="height: 100px"></div>
-            <SkillCard :skill="skill.data" />
+            <SkillCard :skill="skill" />
             <div style="height: 200px"></div>
           </q-scroll-area>
         </div>
@@ -33,7 +33,7 @@ export default {
         label: null,
         type: null,
         level: 0.0,
-        image: null,
+        image: "",
       },
     };
   },

@@ -9,8 +9,7 @@
               v-model="ski.label"
               lazy-rules
               :rules="[
-                (val) =>
-                  (val && val.length > 0) || 'Entrer le nom de la compétence !',
+                (val) => (val && val.length > 0) || 'Entrer le nom de la compétence !',
               ]"
               label="Nom de la compétence"
             ></q-input>
@@ -31,13 +30,7 @@
             <q-badge color="secondary">
               Niveau de la compétence : {{ skill.level + "%" }}
             </q-badge>
-            <q-slider
-              v-model="ski.level"
-              :min="0"
-              :max="100"
-              lazy-rules
-              :step="0.5"
-            />
+            <q-slider v-model="ski.level" :min="0" :max="100" lazy-rules :step="0.5" />
           </div>
         </div>
         <div class="row justify-center">
@@ -45,9 +38,7 @@
             <q-input
               v-model="ski.image"
               lazy-rules
-              :rules="[
-                (val) => (val && val.length > 0) || 'Mettre une image ! ',
-              ]"
+              :rules="[(val) => (val && val.length > 0) || 'Mettre une image ! ']"
               label="Mettre l'image de la compétence"
             ></q-input>
           </div>

@@ -1,16 +1,23 @@
 <template>
   <div>
     <main class="container">
-      <q-parallax :height="300">
+      <q-parallax :height="200">
         <template v-slot:media>
           <img src="https://pic.clubic.com/v1/images/1709824/raw" />
         </template>
-        <h1 class="text-white">Mes compétences</h1>
       </q-parallax>
       <section v-if="skills">
         <div class="row q-col-gutter-sm q-ma-md">
           <div class="col-4" v-for="(skill, index) in skills" :key="index">
-            <SkillCard :skill="skill" />
+            <transition
+              appear
+              enter-active-class="animated zoomInLeft"
+              leave-active-class="animated zoomOutLeft"
+            >
+              <q-intersection transition="scale">
+                <SkillCard :skill="skill" />
+              </q-intersection>
+            </transition>
           </div>
         </div>
       </section>
