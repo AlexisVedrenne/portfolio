@@ -3,11 +3,11 @@ import * as store from "firebase/storage";
 import { Notify } from "quasar";
 import "core-js/es/array";
 
-export async function fetchImg({ commit }, { ref, img }) {
+export async function fetchImg({ commit }, { img }) {
   try {
     const storage = fire.storage;
     const storageRef = store.ref(storage);
-    const folder = store.ref(storageRef, ref);
+    const folder = store.ref(storageRef, "images");
     const tempImg = store.ref(folder, img);
     const name = tempImg.fullPath;
     const url = store.getDownloadURL(store.ref(storage, name));
@@ -25,7 +25,7 @@ export async function fetchVieo({ commit }, { video }) {
   try {
     const storage = fire.storage;
     const storageRef = store.ref(storage);
-    const folder = store.ref(storageRef, "video");
+    const folder = store.ref(storageRef, "videos");
     const tempVideo = store.ref(folder, video);
     const name = tempVideo.fullPath;
     const url = store.getDownloadURL(store.ref(storage, name));

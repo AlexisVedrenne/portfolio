@@ -291,24 +291,9 @@ export default {
   async mounted() {
     this.videoUrls.push(await this.$store.dispatch("fetchVieo", { video: "mooman.mp4" }));
     this.videoUrls.push(await this.$store.dispatch("fetchVieo", { video: "lol.mp4" }));
-    this.urls.push(
-      await this.$store.dispatch("fetchImg", {
-        ref: "passion",
-        img: "dessin1.jpg",
-      })
-    );
-    this.urls.push(
-      await this.$store.dispatch("fetchImg", {
-        ref: "passion",
-        img: "dessin2.jpg",
-      })
-    );
-    this.urls.push(
-      await this.$store.dispatch("fetchImg", {
-        ref: "passion",
-        img: "dessin3.jpg",
-      })
-    );
+    this.urls.push(await this.$store.dispatch("fetchImg", { img: "dessin1.jpg" }));
+    this.urls.push(await this.$store.dispatch("fetchImg", { img: "dessin2.jpg" }));
+    this.urls.push(await this.$store.dispatch("fetchImg", { img: "dessin3.jpg" }));
   },
 };
 </script>
