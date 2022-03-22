@@ -30,6 +30,7 @@ export async function fetchVieo({ commit }, { video }) {
     const name = tempVideo.fullPath;
     const url = store.getDownloadURL(store.ref(storage, name));
     commit("addVideo", { video: url });
+    console.log(url);
     return url;
   } catch (e) {
     Notify.create({

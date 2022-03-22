@@ -5,7 +5,7 @@
         <template v-slot:media>
           <img src="" />
         </template>
-        <h1 class="text-white text-bold">Qui suis-je ?</h1>
+        <h1 class="text-dark text-bold">Qui suis-je ?</h1>
       </q-parallax>
 
       <section class="row justify-center">
@@ -62,40 +62,62 @@
               companie.
             </p>
           </transition>
-          <q-btn @click="passion = true" label="Voir mes réalisation"></q-btn>
+          <div class="row justify-center">
+            <q-btn
+              color="secondary"
+              outline
+              @click="passion = true"
+              label="Voir mes réalisation"
+            ></q-btn>
+          </div>
 
           <q-dialog v-model="passion">
-            <transition
-              appear
-              enter-active-class="animated backInDown"
-              leave-active-class="animated backOutDown"
-            >
-              <q-layout view="Lhh lpR fff" container class="bg-white">
-                <q-page-container>
-                  <q-page padding>
-                    <p class="text-h6">Quelques dessins que j'ai réaliser</p>
-                    <div class="q-pa-md">
-                      <q-carousel
-                        style="height: 500px"
-                        swipeable
-                        animated
-                        v-model="model"
-                        thumbnails
-                        infinite
-                      >
-                        <q-carousel-slide
-                          v-for="(url, index) in urls"
-                          :key="index"
-                          :name="index"
-                          :img-src="url"
-                        />
-                      </q-carousel>
-                      <q-video />
-                    </div>
-                  </q-page>
-                </q-page-container>
-              </q-layout>
-            </transition>
+            <q-layout view="Lhh lpR fff" container class="bg-white">
+              <q-page-container>
+                <q-page padding>
+                  <p class="text-h6">Quelques vidéos de piano</p>
+                  <q-carousel
+                    style="height: 250px"
+                    animated
+                    v-model="vidModel"
+                    navigation
+                    infinite
+                    :autoplay="autoplay"
+                    arrows
+                    transition-prev="slide-right"
+                    transition-next="slide-left"
+                    @mouseenter="autoplay = false"
+                    @mouseleave="autoplay = true"
+                  >
+                    <q-carousel-slide
+                      v-for="(url, index) in videoUrls"
+                      :key="index"
+                      :name="index"
+                    >
+                      <q-video :src="url" :ratio="16 / 9" class="absolute-full" />
+                    </q-carousel-slide>
+                  </q-carousel>
+                  <p class="text-h6">Quelques dessins que j'ai réaliser</p>
+                  <div class="q-pa-md">
+                    <q-carousel
+                      style="height: 500px"
+                      swipeable
+                      animated
+                      v-model="model"
+                      thumbnails
+                      infinite
+                    >
+                      <q-carousel-slide
+                        v-for="(url, index) in urls"
+                        :key="index"
+                        :name="index"
+                        :img-src="url"
+                      />
+                    </q-carousel>
+                  </div>
+                </q-page>
+              </q-page-container>
+            </q-layout>
           </q-dialog>
         </article>
       </section>
@@ -257,10 +279,18 @@ import { ref } from "vue";
 export default {
   name: "aboutMe",
   data() {
-    return { passion: false, urls: [], videoUrls: [], model: ref(0) };
+    return {
+      passion: false,
+      urls: [],
+      videoUrls: [],
+      model: ref(0),
+      vidModel: ref(0),
+      autoplay: true,
+    };
   },
   async mounted() {
     this.videoUrls.push(await this.$store.dispatch("fetchVieo", { video: "mooman.mp4" }));
+    this.videoUrls.push(await this.$store.dispatch("fetchVieo", { video: "lol.mp4" }));
     this.urls.push(
       await this.$store.dispatch("fetchImg", {
         ref: "passion",
