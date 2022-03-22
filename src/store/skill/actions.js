@@ -1,7 +1,19 @@
 import fire from "src/boot/FireBase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
+import { collection, addDoc, getDocs, getDoc } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
+
+export async function fetchSkill({ commit }, { skillRef }) {
+  try {
+    const res = await getDoc(skillRef);
+    return res.data();
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
 
 export async function fetchAllSkills({ commit }) {
   try {

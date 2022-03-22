@@ -18,6 +18,11 @@ const routes = [
         path: "my-skills",
         component: () => import("pages/OwnSkills.vue"),
       },
+      {
+        name: "projects",
+        path: "my-projects",
+        component: () => import("pages/OwnProjects.vue"),
+      },
     ],
   },
 
