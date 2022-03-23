@@ -36,12 +36,17 @@ const routes = [
   {
     path: "/admin/",
     meta: { mustBeLogged: true },
-    component: () => import("layouts/MainLayout.vue"),
+    component: () => import("layouts/AdminLayout.vue"),
     children: [
       {
         name: "addSkill",
         path: "add-skill",
         component: () => import("pages/admin/skill/AddSkill.vue"),
+      },
+      {
+        name: "addProject",
+        path: "add-project",
+        component: () => import("pages/admin/project/AddProject.vue"),
       },
     ],
   },

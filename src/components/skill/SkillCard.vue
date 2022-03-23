@@ -10,7 +10,7 @@
 
             <q-card-section>
               <div class="text-overline">
-                <q-badge color="secondary" :label="skil.type" />
+                <q-badge outline :style="'color:' + skil.color" :label="skil.type" />
               </div>
               <q-linear-progress
                 size="25px"
@@ -33,7 +33,7 @@
               <div class="row justify-center q-mt-sm">
                 <q-btn
                   outline
-                  color="secondary"
+                  :style="'color:' + skil.color"
                   :label="'Voir les projets : ' + skil.label"
                 ></q-btn>
               </div>

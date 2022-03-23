@@ -1,10 +1,8 @@
 <template>
   <q-layout view="lHh Lpr lFf">
-    <q-header reveal elevated>
+    <q-header reveal height-hint elevated>
       <q-toolbar inset>
-        <q-toolbar-title
-          ><strong>Alexis Vedrenne</strong> Portfolio</q-toolbar-title
-        >
+        <q-toolbar-title><strong>Alexis Vedrenne</strong> Portfolio</q-toolbar-title>
         <p>Etudiant en cyle ingéniérie | Chef de projet SI</p>
       </q-toolbar>
       <q-toolbar class="row justify-center secon">

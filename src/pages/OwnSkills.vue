@@ -9,15 +9,9 @@
       <section v-if="skills">
         <div class="row q-col-gutter-sm q-ma-md">
           <div class="col-4" v-for="(skill, index) in skills" :key="index">
-            <transition
-              appear
-              enter-active-class="animated zoomInLeft"
-              leave-active-class="animated zoomOutLeft"
-            >
-              <q-intersection transition="scale">
-                <SkillCard :skill="skill" />
-              </q-intersection>
-            </transition>
+            <q-intersection transition="scale">
+              <SkillCard :skill="skill" />
+            </q-intersection>
           </div>
         </div>
       </section>

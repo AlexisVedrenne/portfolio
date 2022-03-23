@@ -2,9 +2,7 @@
   <q-layout view="lHh Lpr lFf">
     <q-header reveal elevated>
       <q-toolbar inset>
-        <q-toolbar-title
-          ><strong>Administration</strong> Portfolio</q-toolbar-title
-        >
+        <q-toolbar-title><strong>Administration</strong> Portfolio</q-toolbar-title>
       </q-toolbar>
       <q-toolbar class="row justify-center secon">
         <q-list class="secondary row justify-center">

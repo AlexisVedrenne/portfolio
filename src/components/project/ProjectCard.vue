@@ -4,12 +4,7 @@
       <div class="row justify-center">
         <div class="col">
           <q-card class="my-card">
-            <q-parallax
-              :height="150"
-              :width="100"
-              src="https://cdn.pixabay.com/photo/2018/05/03/21/49/android-3372580_960_720.png"
-            >
-            </q-parallax>
+            <q-parallax :height="150" :width="100" :src="project.image"> </q-parallax>
             <q-card-section>
               <div class="text-h6">{{ project.name }}</div>
             </q-card-section>
@@ -18,21 +13,45 @@
                 v-for="(skill, index) in project.skills"
                 :key="index"
                 outline
-                color="primary"
+                :style="'color:' + skill.color"
                 :label="skill.label"
+                color="secondary"
               />
             </div>
-            <q-card-section>
-              <p class="text-justify">
-                {{ project.description }}
-              </p>
-            </q-card-section>
+            <q-card-actions>
+              <q-btn
+                label="Description du projet"
+                color="grey"
+                flat
+                dense
+                :icon="expanded ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+                @click="expanded = !expanded"
+              />
+            </q-card-actions>
+            <q-slide-transition>
+              <div v-show="expanded">
+                <q-separator />
+                <q-card-section class="text-subitle2">
+                  <p class="text-justify">
+                    {{ project.description }}
+                  </p>
+                </q-card-section>
+              </div>
+            </q-slide-transition>
             <q-card-section>
               <div class="row justify-center q-mt-sm">
                 <q-btn
+                  v-if="project.git"
                   outline
                   color="secondary"
-                  :label="'Voir les projets : ' + Projet"
+                  label="Voir le dépot git"
+                  class="q-mr-sm"
+                ></q-btn>
+                <q-btn
+                  v-if="project.demo"
+                  outline
+                  color="secondary"
+                  label="Voir la démonstration"
                 ></q-btn>
               </div>
             </q-card-section>
@@ -43,6 +62,7 @@
   </div>
 </template>
 <script>
+import { ref } from "vue";
 export default {
   props: {
     proProject: {
@@ -53,6 +73,7 @@ export default {
   data() {
     return {
       project: this.proProject,
+      expanded: ref(false),
     };
   },
 };
