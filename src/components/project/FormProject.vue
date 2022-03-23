@@ -21,14 +21,14 @@
         ]"
       />
       <p class="text-h6">Sélectionner les compétences liée au projet *</p>
-      <div v-if="skillsRef">
+      <div v-if="skills">
         <q-checkbox
-          v-for="(skill, index) in skillsRef"
+          v-for="(skill, index) in skills"
           :key="index"
           v-model="proj.skills"
-          :val="skill"
-          :label="skills[index].label"
-          :style="'color:' + skills[index].color"
+          :val="skill.label"
+          :label="skill.label"
+          :style="'color:' + skill.color"
         />
       </div>
       <div v-else class="row justify-center">
@@ -96,11 +96,7 @@ export default {
     };
   },
   async mounted() {
-    let skills = await this.$store.dispatch("fetchAllSkillsRef");
-    this.skillsRef = skills;
-    this.skillsRef.forEach((skill) => {
-      this.skills.push(skill.data());
-    });
+    this.skills = await this.$store.dispatch("fetchAllSkills");
   },
   methods: {
     async onSubmit() {

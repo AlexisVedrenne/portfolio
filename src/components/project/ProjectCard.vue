@@ -9,13 +9,13 @@
               <div class="text-h6">{{ project.name }}</div>
             </q-card-section>
             <div class="q-pa-md q-gutter-md">
+              <!-- <q-btn label="Voir" @click="seeSkill" /> -->
               <q-badge
-                v-for="(skill, index) in project.skills"
+                v-for="(skill, index) in skills"
                 :key="index"
                 outline
                 :style="'color:' + skill.color"
                 :label="skill.label"
-                color="secondary"
               />
             </div>
             <q-card-actions>
@@ -69,12 +69,21 @@ export default {
       type: Object,
       required: true,
     },
+    skills: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
       project: this.proProject,
       expanded: ref(false),
     };
+  },
+  methods: {
+    seeSkill() {
+      console.log(this.skills);
+    },
   },
 };
 </script>

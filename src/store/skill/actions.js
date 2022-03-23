@@ -6,14 +6,19 @@ import {
   getDoc,
   query,
   orderBy,
+  where,
 } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
 
-export async function fetchSkill({ commit }, { skillRef }) {
+export async function fetchSkill({ commit }, { label }) {
   try {
-    const res = await getDoc(skillRef);
-    return res.data();
+    const q = await query(
+      collection(fire.firebasebd, "skills"),
+      where("label", "==", label)
+    );
+    const res = await getDocs(q);
+    return res.docs[0].data();
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
@@ -35,18 +40,6 @@ export async function fetchAllSkills({ commit }) {
     });
     commit("setSkills", { skills });
     return skills;
-  } catch (e) {
-    Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
-      color: "negative",
-    });
-  }
-}
-
-export async function fetchAllSkillsRef({ commit }) {
-  try {
-    const res = await getDocs(collection(fire.firebasebd, "skills"));
-    return res.docs;
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,

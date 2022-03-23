@@ -6,7 +6,15 @@
           <img src="https://pic.clubic.com/v1/images/1709824/raw" />
         </template>
       </q-parallax>
-      <section v-for="(project, index) in projects" :key="index" class="q-ml-sm">
+      <div class="row justify-center q-mt-md">
+        <q-btn
+          @click="refresh"
+          color="secondary"
+          :loading="loading"
+          label="Rafraichir la page"
+        />
+      </div>
+      <section v-for="(project, index) in projects" :key="index" class="q-ml-sm q-mt-sm">
         <transition
           appear
           enter-active-class="animated zoomInLeft"
@@ -17,18 +25,15 @@
           </p>
         </transition>
         <div class="row q-col-gutter-sm q-ma-md">
-          <div class="col-4">
-            <transition
-              v-for="(type, index) in project"
-              :key="index"
-              appear
-              enter-active-class="animated zoomInLeft"
-              leave-active-class="animated zoomOutLeft"
-            >
-              <q-intersection once transition="scale">
-                <ProjectCard :proProject="type" />
-              </q-intersection>
-            </transition>
+          <div
+            :hidden="loading"
+            v-for="(type, index) in project"
+            :key="index"
+            class="col-4"
+          >
+            <q-intersection transition="scale">
+              <ProjectCard :proProject="type" :skills="type.skills" />
+            </q-intersection>
           </div>
         </div>
       </section>
@@ -48,7 +53,12 @@ export default {
   },
   data() {
     return {
-      projects: null,
+      projects: {
+        perso: [],
+        entreprise: [],
+        scolaire: [],
+      },
+      loading: false,
       titre: {
         perso: "Projets personels",
         entreprise: "Projet réaliser en entreprise",
@@ -57,12 +67,17 @@ export default {
     };
   },
   async mounted() {
-    const projects = await this.$store.dispatch("fetchAllProjects");
-    this.projects = {
-      perso: projects.filter((p) => p.type === "perso"),
-      entreprise: projects.filter((p) => p.type === "entreprise"),
-      scolaire: projects.filter((p) => p.type === "scolaire"),
-    };
+    await this.refresh();
+  },
+  methods: {
+    async refresh() {
+      this.loading = true;
+      const projects = await this.$store.dispatch("fetchAllProjects");
+      this.projects.perso = projects.filter((p) => p.type === "perso");
+      this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
+      this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
+      this.loading = false;
+    },
   },
 };
 </script>

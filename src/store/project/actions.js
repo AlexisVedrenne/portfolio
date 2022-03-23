@@ -12,7 +12,7 @@ export async function fetchAllProjects({ commit, dispatch }) {
     res.forEach((project) => {
       tmpProject = project.data();
       tmpProject.skills.forEach(async (skill) => {
-        skillTemp.push(await dispatch("fetchSkill", { skillRef: skill }));
+        skillTemp.push(await dispatch("fetchSkill", { label: skill }));
       });
       tmpProject.skills = skillTemp;
       projects.push(tmpProject);
@@ -30,12 +30,6 @@ export async function fetchAllProjects({ commit, dispatch }) {
 
 export async function createProject({ commit }, { project }) {
   try {
-    const skillRef = [];
-    project.skills.forEach((skill) => {
-      skillRef.push(getDoc(skill));
-    });
-    project.skills = skillRef;
-    console.log(project);
     const projectRef = await addDoc(
       collection(fire.firebasebd, "projects"),
       project
