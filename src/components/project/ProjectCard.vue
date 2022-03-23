@@ -46,12 +46,16 @@
                   color="secondary"
                   label="Voir le dépot git"
                   class="q-mr-sm"
+                  :href="project.git"
+                  target="_blank"
                 ></q-btn>
                 <q-btn
                   v-if="project.demo"
                   outline
                   color="secondary"
                   label="Voir la démonstration"
+                  :href="project.demo"
+                  target="_blank"
                 ></q-btn>
               </div>
             </q-card-section>
