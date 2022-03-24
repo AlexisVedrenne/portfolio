@@ -6,14 +6,6 @@
           <img src="https://pic.clubic.com/v1/images/1709824/raw" />
         </template>
       </q-parallax>
-      <div class="row justify-center q-mt-md">
-        <q-btn
-          @click="refresh"
-          color="secondary"
-          :loading="loading"
-          label="Rafraichir la page"
-        />
-      </div>
       <section v-for="(project, index) in projects" :key="index" class="q-ml-sm q-mt-sm">
         <transition
           appear
@@ -58,7 +50,6 @@ export default {
         entreprise: [],
         scolaire: [],
       },
-      loading: false,
       titre: {
         perso: "Projets personels",
         entreprise: "Projet réaliser en entreprise",
@@ -71,12 +62,10 @@ export default {
   },
   methods: {
     async refresh() {
-      this.loading = true;
       const projects = await this.$store.dispatch("fetchAllProjects");
       this.projects.perso = projects.filter((p) => p.type === "perso");
       this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
       this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
-      this.loading = false;
     },
   },
 };

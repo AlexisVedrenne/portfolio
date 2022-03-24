@@ -37,6 +37,11 @@ export default {
         name: "",
         skills: [],
         type: "",
+        details: {
+          state: false,
+          context: ["Ecrire le contexte du projet ici...", "img"],
+          sections: [],
+        },
       },
     };
   },

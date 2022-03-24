@@ -23,6 +23,11 @@ const routes = [
         path: "my-projects",
         component: () => import("pages/OwnProjects.vue"),
       },
+      {
+        name: "projectDetail",
+        path: "my-project/details/:id",
+        component: () => import("pages/ProjectDetails.vue"),
+      },
     ],
   },
 
