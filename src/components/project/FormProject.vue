@@ -121,13 +121,8 @@
           ]"
         />
         <p class="text-h6">Image éventuelle pour le contexte</p>
-        <q-input
-          class="q-mb-md"
-          filled
-          v-model="proj.details.context[1]"
-          label="Image du contexte"
-          type="text"
-        />
+        <q-file v-model="proj.details.context[1]" accept="image/*" />
+
         <section class="columns justify-center">
           <article
             v-for="(section, index) in proj.details.sections"

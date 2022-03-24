@@ -28,12 +28,32 @@ export async function fetchAllProjects({ commit, dispatch }) {
   }
 }
 
-export async function createProject({ commit }, { project }) {
+export async function createProject({ commit, dispatch }, { project }) {
   try {
-    const projectRef = await addDoc(
-      collection(fire.firebasebd, "projects"),
-      project
-    );
+    if (project.details.state) {
+      let tempFileContext = project.details.context[1];
+      if (tempFileContext) {
+        let tempImg = await dispatch("uploadImage", {
+          image: tempFileContext,
+        });
+        project.details.context[1] = tempImg.ref.name;
+      }
+      project.details.sections.forEach(async (section) => {
+        const tempFile = section[2];
+        let img = null;
+        if (tempFile) {
+          img = await dispatch("uploadImage", {
+            image: tempFile,
+          });
+          section[2] = img.ref.name;
+        }
+      });
+    }
+    // const projectRef = await addDoc(
+    //   collection(fire.firebasebd, "projects"),
+    //   project
+    // );
+    const projectRef = 1;
     Notify.create({
       message: "Le projet a bien été créer ! : " + projectRef.id,
       color: "positive",

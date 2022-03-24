@@ -39,7 +39,7 @@ export default {
         type: "",
         details: {
           state: false,
-          context: ["Ecrire le contexte du projet ici...", "img"],
+          context: ["Ecrire le contexte du projet ici...", null],
           sections: [],
         },
       },

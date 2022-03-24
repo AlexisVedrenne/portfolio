@@ -30,8 +30,42 @@ export async function fetchVieo({ commit }, { video }) {
     const name = tempVideo.fullPath;
     const url = store.getDownloadURL(store.ref(storage, name));
     commit("addVideo", { video: url });
-    console.log(url);
     return url;
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function uploadVideo({ commit }, { video }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const folder = store.ref(storageRef, "videos");
+    const upload = await store.uploadBytes(folder, video);
+    return upload;
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function uploadImage({ commit }, { image }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const metaData = {
+      type: image.type,
+      siez: image.size,
+      lastModifiedDate: image.lastModifiedDate,
+    };
+    const folder = store.ref(storageRef, "images/" + image.name);
+    const upload = await store.uploadBytes(folder, image, metaData);
+    return upload;
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
