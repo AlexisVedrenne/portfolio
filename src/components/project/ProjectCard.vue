@@ -39,9 +39,9 @@
               </div>
             </q-slide-transition>
             <q-card-section>
-              <div class="row justify-center">
+              <div v-if="project.details.state" class="row justify-center">
                 <q-btn
-                  href="/#/my-project/details/1"
+                  :href="'/#/my-project/details/' + project.details"
                   outline
                   color="secondary"
                   label="En savoir plus"

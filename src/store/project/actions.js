@@ -31,29 +31,45 @@ export async function fetchAllProjects({ commit, dispatch }) {
 export async function createProject({ commit, dispatch }, { project }) {
   try {
     if (project.details.state) {
-      let tempFileContext = project.details.context[1];
+      let tempFileContext = project.details.context.file;
+      let tempFile = null;
       if (tempFileContext) {
-        let tempImg = await dispatch("uploadImage", {
-          image: tempFileContext,
-        });
-        project.details.context[1] = tempImg.ref.name;
+        if ("image/jpeg" == tempFileContext.type) {
+          tempFile = await dispatch("uploadImage", {
+            image: tempFileContext,
+          });
+        } else {
+          tempFile = await dispatch("uploadVideo", {
+            video: tempFileContext,
+          });
+        }
+        project.details.context.file = tempFile;
       }
-      project.details.sections.forEach(async (section) => {
-        const tempFile = section[2];
+      for (let i = 0; i < project.details.sections.length; i++) {
+        let tempFile = project.details.sections[i].file;
         let img = null;
         if (tempFile) {
-          img = await dispatch("uploadImage", {
-            image: tempFile,
-          });
-          section[2] = img.ref.name;
+          if (tempFile.type.includes("image")) {
+            img = await dispatch("uploadImage", {
+              image: tempFile,
+            });
+          } else {
+            img = await dispatch("uploadVideo", {
+              video: tempFile,
+            });
+          }
+          project.details.sections[i].file = img;
         }
-      });
+      }
     }
-    // const projectRef = await addDoc(
-    //   collection(fire.firebasebd, "projects"),
-    //   project
-    // );
-    const projectRef = 1;
+
+    project.image = await dispatch("uploadImage", {
+      image: project.image,
+    });
+    const projectRef = await addDoc(
+      collection(fire.firebasebd, "projects"),
+      project
+    );
     Notify.create({
       message: "Le projet a bien été créer ! : " + projectRef.id,
       color: "positive",

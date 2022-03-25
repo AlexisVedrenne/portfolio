@@ -2,27 +2,19 @@
   <div class="container q-mb-lg">
     <h6 class="text-center">Nom du projet : {{ proj.name }}</h6>
     <q-form @submit="onSubmit" class="q-gutter-md">
-      <q-input
-        filled
-        v-model="proj.name"
-        label="Titre du projet *"
-        lazy-rules
-        :rules="[(val) => (val && val.length > 0) || 'Entrer le titre du projet ! ']"
-      />
+      <q-input required filled v-model="proj.name" label="Titre du projet *" />
 
       <q-input
         filled
+        required
         type="textarea"
         v-model="proj.description"
         label="La description du projet *"
-        lazy-rules
-        :rules="[
-          (val) => (val && val.length > 0) || 'Entrer la description du projet ! ',
-        ]"
       />
       <p class="text-h6">Sélectionner les compétences liée au projet *</p>
       <div v-if="skills">
         <q-checkbox
+          required
           v-for="(skill, index) in skills"
           :key="index"
           v-model="proj.skills"
@@ -34,33 +26,38 @@
       <div v-else class="row justify-center">
         <q-spinner-cube color="primary" size="5.5em" />
       </div>
+      <p>Selectionner un type de projet</p>
       <q-select
+        transition-show="flip-up"
+        transition-hide="flip-down"
+        filled
+        required
         v-model="proj.type"
         :options="optionsLs"
         label="Selectionner le type du projet *"
       ></q-select>
 
-      <q-input
-        filled
-        v-model="proj.image"
-        label="Image du projet *"
-        lazy-rules
-        type="url"
-        :rules="[(val) => (val && val.length > 0) || 'Mettre une image au projet']"
+      <q-file
+        outlined
         required
-      />
+        v-model="proj.image"
+        accept="image/*,.mp4"
+        label="Image ou vidéo du projet *"
+      >
+        <template v-slot:prepend>
+          <q-icon name="attach_file" />
+        </template>
+      </q-file>
       <q-input
         filled
         v-model="proj.git"
         label="Lien vers le git du projet *"
-        lazy-rules
         type="url"
       />
       <q-input
         filled
         v-model="proj.demo"
         label="Lien vers la démonstration du projet"
-        lazy-rules
         type="url"
       />
       <q-toggle
@@ -77,7 +74,7 @@
         <p class="text-h6">Ecire le context du projet</p>
         <q-editor
           class="q-mb-md"
-          v-model="proj.details.context[0]"
+          v-model="proj.details.context.des"
           :toolbar="[
             [
               {
@@ -120,8 +117,16 @@
             ['viewsource'],
           ]"
         />
-        <p class="text-h6">Image éventuelle pour le contexte</p>
-        <q-file v-model="proj.details.context[1]" accept="image/*" />
+        <q-file
+          outlined
+          label="Image ou vidéo pour le context"
+          v-model="proj.details.context.file"
+          accept="image/*"
+        >
+          <template v-slot:prepend>
+            <q-icon name="attach_file" />
+          </template>
+        </q-file>
 
         <section class="columns justify-center">
           <article
@@ -132,7 +137,7 @@
             <div class="col">
               <p class="text-h6">Section numéro {{ index }}</p>
               <q-input
-                v-model="section[0]"
+                v-model="section.titre"
                 class="q-mb-md"
                 :label="'Titre de la section ' + index"
                 :id="`inSec-${index}`"
@@ -140,7 +145,7 @@
               <q-editor
                 :id="`editorSec-${index}`"
                 class="q-mb-md"
-                v-model="section[1]"
+                v-model="section.des"
                 :toolbar="[
                   [
                     {
@@ -184,10 +189,15 @@
                 ]"
               />
               <q-file
-                :label="'Image pour la section ' + index"
-                v-model="section[2]"
-                accept="image/*"
-              />
+                outlined
+                :label="'Image ou vidéo pour la section ' + index"
+                v-model="section.file"
+                accept="image/*,.mp4"
+              >
+                <template v-slot:prepend>
+                  <q-icon name="attach_file" />
+                </template>
+              </q-file>
             </div>
           </article>
         </section>
@@ -238,7 +248,11 @@ export default {
       this.loading = false;
     },
     addSection() {
-      this.proj.details.sections.push(["", "Ecrire dans cette section", ref(null)]);
+      this.proj.details.sections.push({
+        titre: "",
+        des: "Ecrire dans cette section",
+        file: null,
+      });
       this.utils.notify(
         "Section numéro " + (this.proj.details.sections.length - 1) + " ajouté"
       );

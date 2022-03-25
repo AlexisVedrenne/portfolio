@@ -43,9 +43,9 @@ export async function uploadVideo({ commit }, { video }) {
   try {
     const storage = fire.storage;
     const storageRef = store.ref(storage);
-    const folder = store.ref(storageRef, "videos");
+    const folder = store.ref(storageRef, "videos/" + video.name);
     const upload = await store.uploadBytes(folder, video);
-    return upload;
+    return upload.ref.name;
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
@@ -60,12 +60,12 @@ export async function uploadImage({ commit }, { image }) {
     const storageRef = store.ref(storage);
     const metaData = {
       type: image.type,
-      siez: image.size,
+      size: image.size,
       lastModifiedDate: image.lastModifiedDate,
     };
     const folder = store.ref(storageRef, "images/" + image.name);
     const upload = await store.uploadBytes(folder, image, metaData);
-    return upload;
+    return upload.ref.name;
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
