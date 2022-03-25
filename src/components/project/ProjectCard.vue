@@ -43,7 +43,7 @@
                 <q-btn
                   :href="'/#/my-project/details/' + project.name"
                   outline
-                  color="secondary"
+                  color="accent"
                   label="En savoir plus"
                   push
                 ></q-btn>
@@ -52,7 +52,7 @@
                 <q-btn
                   v-if="project.git"
                   outline
-                  color="secondary"
+                  color="accent"
                   label="Voir le dépot git"
                   class="q-mr-sm"
                   :href="project.git"
@@ -61,7 +61,7 @@
                 <q-btn
                   v-if="project.demo"
                   outline
-                  color="secondary"
+                  color="accent"
                   label="Voir la démonstration"
                   :href="project.demo"
                   target="_blank"

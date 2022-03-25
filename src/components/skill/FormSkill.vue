@@ -33,7 +33,7 @@
             </div>
             <div class="row justify-center">
               <div class="col q-mb-sm">
-                <q-badge color="secondary">
+                <q-badge color="accent">
                   Niveau de la compétence : {{ skill.level + "%" }}
                 </q-badge>
                 <q-slider
@@ -62,7 +62,7 @@
                 :loading="loading"
                 type="submit"
                 outline
-                color="secondary"
+                color="accent"
                 >Ajouter une compétence</q-btn
               >
             </div>

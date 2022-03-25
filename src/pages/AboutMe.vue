@@ -64,7 +64,7 @@
           </transition>
           <div class="row justify-center">
             <q-btn
-              color="secondary"
+              color="accent"
               outline
               @click="passion = true"
               label="Voir mes réalisation"
@@ -124,7 +124,7 @@
 
       <section class="row justify-center">
         <div class="q-px-lg q-pb-md">
-          <q-timeline layout="loose" color="secondary">
+          <q-timeline layout="loose" color="accent">
             <q-intersection transition="scale">
               <q-timeline-entry heading>
                 Mon future
@@ -159,7 +159,7 @@
                 title="Titre 7, Institut G4 - Paris, 75"
                 subtitle="Titre 7 (En cours)"
                 side="left"
-                color="green"
+                color="secondary"
               >
                 <div>
                   <p style="font-size: 17px" class="text-left">
@@ -172,7 +172,7 @@
                 title="Titre 6, Institut G4 - Paris, 75"
                 subtitle="Titre 6 (En cours)"
                 side="left"
-                color="green"
+                color="secondary"
               >
                 <div>
                   <p style="font-size: 17px" class="text-left">
@@ -188,7 +188,7 @@
                 subtitle="09/2021 - 07/2023 (En cours)"
                 side="left"
                 icon="done"
-                color="green"
+                color="secondary"
               >
                 <div>
                   <p style="font-size: 17px" class="text-left">
@@ -203,7 +203,7 @@
                       to="https://www.institut-g4.fr/"
                       icon-right="send"
                       label="Voir l'école"
-                      color="green"
+                      color="secondary"
                       href="https://www.institut-g4.fr/"
                       target="_blank"
                       flat
@@ -229,7 +229,7 @@
                     href="https://bts-sio.lyc-bonaparte.fr/"
                     icon-right="send"
                     label="Voir l'école"
-                    color="secondary"
+                    color="accent"
                     target="_blank"
                     flat
                   ></q-btn>

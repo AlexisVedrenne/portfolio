@@ -217,7 +217,7 @@
           :loading="loading"
           label="Ajouter le projet"
           type="submit"
-          color="secondary"
+          color="accent"
           outline
         />
       </div>
