@@ -38,6 +38,7 @@ export default {
         skills: [],
         type: "",
         details: {
+          baniere,
           state: false,
           context: { des: "Ecrire le contexte du projet ici...", file: null },
           sections: [],

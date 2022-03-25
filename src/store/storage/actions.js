@@ -39,13 +39,13 @@ export async function fetchVieo({ commit }, { video }) {
   }
 }
 
-export async function uploadVideo({ commit }, { video }) {
+export async function uploadVideo({ commit, dispatch }, { video }) {
   try {
     const storage = fire.storage;
     const storageRef = store.ref(storage);
     const folder = store.ref(storageRef, "videos/" + video.name);
     const upload = await store.uploadBytes(folder, video);
-    return upload.ref.name;
+    return dispatch("fetchVieo", { video: upload.ref.name });
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
@@ -54,7 +54,7 @@ export async function uploadVideo({ commit }, { video }) {
   }
 }
 
-export async function uploadImage({ commit }, { image }) {
+export async function uploadImage({ commit, dispatch }, { image }) {
   try {
     const storage = fire.storage;
     const storageRef = store.ref(storage);
@@ -65,7 +65,7 @@ export async function uploadImage({ commit }, { image }) {
     };
     const folder = store.ref(storageRef, "images/" + image.name);
     const upload = await store.uploadBytes(folder, image, metaData);
-    return upload.ref.name;
+    return dispatch("fetchImg", { img: upload.ref.name });
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,

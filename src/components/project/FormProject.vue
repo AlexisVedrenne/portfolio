@@ -71,6 +71,16 @@
         <div class="row justify-center q-mb-sm">
           <q-btn @click="addSection" push color="primary" label="Ajouter une section" />
         </div>
+        <q-file
+          outlined
+          label="Image ou vidéo pour la banière"
+          v-model="proj.details.banniere"
+          accept="image/*"
+        >
+          <template v-slot:prepend>
+            <q-icon name="attach_file" />
+          </template>
+        </q-file>
         <p class="text-h6">Ecire le context du projet</p>
         <q-editor
           class="q-mb-md"
@@ -252,6 +262,7 @@ export default {
         titre: "",
         des: "Ecrire dans cette section",
         file: null,
+        fileType: null,
       });
       this.utils.notify(
         "Section numéro " + (this.proj.details.sections.length - 1) + " ajouté"

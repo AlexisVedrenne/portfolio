@@ -11,7 +11,7 @@
             <div class="q-pa-md q-gutter-md">
               <!-- <q-btn label="Voir" @click="seeSkill" /> -->
               <q-badge
-                v-for="(skill, index) in skills"
+                v-for="(skill, index) in project.skills"
                 :key="index"
                 outline
                 :style="'color:' + skill.color"
@@ -41,7 +41,7 @@
             <q-card-section>
               <div v-if="project.details.state" class="row justify-center">
                 <q-btn
-                  :href="'/#/my-project/details/' + project.details"
+                  :href="'/#/my-project/details/' + project.name"
                   outline
                   color="secondary"
                   label="En savoir plus"
@@ -80,10 +80,6 @@ export default {
   props: {
     proProject: {
       type: Object,
-      required: true,
-    },
-    skills: {
-      type: Array,
       required: true,
     },
   },

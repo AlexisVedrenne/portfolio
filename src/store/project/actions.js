@@ -1,5 +1,13 @@
 import fire from "src/boot/FireBase";
-import { collection, addDoc, getDocs, getDoc } from "firebase/firestore";
+import {
+  collection,
+  addDoc,
+  getDocs,
+  getDoc,
+  query,
+  orderBy,
+  where,
+} from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
 
@@ -28,13 +36,33 @@ export async function fetchAllProjects({ commit, dispatch }) {
   }
 }
 
+export async function fechtProject({ commit, dispatch }, { name }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "projects"),
+      where("name", "==", name)
+    );
+    const res = await getDocs(q);
+    return res.docs[0].data();
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
 export async function createProject({ commit, dispatch }, { project }) {
   try {
     if (project.details.state) {
       let tempFileContext = project.details.context.file;
+      let tempFileBaniere = project.details.baniere;
       let tempFile = null;
+      project.details.baniere = await dispatch("uploadImage", {
+        image: tempFileBaniere,
+      });
       if (tempFileContext) {
-        if ("image/jpeg" == tempFileContext.type) {
+        if (tempFileContext.type.includes("image")) {
           tempFile = await dispatch("uploadImage", {
             image: tempFileContext,
           });
@@ -59,6 +87,7 @@ export async function createProject({ commit, dispatch }, { project }) {
             });
           }
           project.details.sections[i].file = img;
+          project.details.sections[i].fileType = tempFile.type;
         }
       }
     }

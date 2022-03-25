@@ -17,14 +17,9 @@
           </p>
         </transition>
         <div class="row q-col-gutter-sm q-ma-md">
-          <div
-            :hidden="loading"
-            v-for="(type, index) in project"
-            :key="index"
-            class="col-4"
-          >
+          <div v-for="(type, index) in project" :key="index" class="col-4">
             <q-intersection transition="scale">
-              <ProjectCard :proProject="type" :skills="type.skills" />
+              <ProjectCard :proProject="type" />
             </q-intersection>
           </div>
         </div>
@@ -58,15 +53,10 @@ export default {
     };
   },
   async mounted() {
-    await this.refresh();
-  },
-  methods: {
-    async refresh() {
-      const projects = await this.$store.dispatch("fetchAllProjects");
-      this.projects.perso = projects.filter((p) => p.type === "perso");
-      this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
-      this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
-    },
+    const projects = await this.$store.dispatch("fetchAllProjects");
+    this.projects.perso = projects.filter((p) => p.type === "perso");
+    this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
+    this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
   },
 };
 </script>
