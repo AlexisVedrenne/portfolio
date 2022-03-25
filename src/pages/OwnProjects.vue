@@ -23,7 +23,7 @@
           </transition>
           <div class="row q-col-gutter-lg q-ma-md">
             <div v-for="(type, index) in project" :key="index" class="col-4">
-              <q-intersection once transition="scale">
+              <q-intersection transition="scale">
                 <ProjectCard :proProject="type" />
               </q-intersection>
             </div>

@@ -32,7 +32,7 @@
               <div v-show="expanded">
                 <q-separator />
                 <q-card-section class="text-subitle2">
-                  <p class="text-justify">
+                  <p style="font-size: 18px" class="text-justify">
                     {{ project.description }}
                   </p>
                 </q-card-section>

@@ -2,14 +2,14 @@
   <div v-if="project">
     <q-parallax :height="200">
       <template v-slot:media>
-        <img :src="project.details.banniere" />
+        <img :src="project.details.baniere" />
       </template>
       <transition
         appear
         enter-active-class="animated flipInX"
         leave-active-class="animated flipInX"
       >
-        <h1 class="text-white text-bold">{{ project.name }}</h1>
+        <h1 class="text-accent text-bold">{{ project.name }}</h1>
       </transition>
     </q-parallax>
 
@@ -24,12 +24,11 @@
           icon="arrow_circle_left"
           style="height: 100px"
         />
-        <article class="col q-mr-md">
+        <article v-if="project.details.context.file" class="col q-mr-md">
           <transition
             appear
             enter-active-class="animated zoomIn"
             leave-active-class="animated zoomOut"
-            v-if="project.details.context.file"
           >
             <q-img
               class="items-center"
@@ -38,7 +37,7 @@
             />
           </transition>
         </article>
-        <article class="col-7">
+        <article class="col">
           <transition
             appear
             enter-active-class="animated fadeInRight"
@@ -58,16 +57,16 @@
       <section
         v-for="(section, index) in project.details.sections"
         :key="index"
-        class="row justify-center items-center q-ml-md q-mt-lg"
+        class="row justify-center items-center q-ml-md q-mt-lg q-mb-lg"
       >
-        <article v-if="section.fileType.includes('image')" class="col-8">
+        <article v-if="section.file && section.fileType.includes('image')" class="col-8">
           <q-intersection transition="scale">
             <h3 class="text-bold text-left">{{ section.titre }}</h3>
             <div v-html="section.des"></div>
           </q-intersection>
         </article>
         <article
-          v-if="section.fileType.includes('video')"
+          v-if="section.file && section.fileType.includes('video')"
           class="col q-mr-lg q-mt-md items-center"
         >
           <q-intersection transition="scale">
@@ -75,7 +74,7 @@
           </q-intersection>
         </article>
         <article
-          v-if="section.fileType.includes('image')"
+          v-if="section.file && section.fileType.includes('image')"
           class="col q-mr-md items-center"
         >
           <q-intersection transition="scale">
