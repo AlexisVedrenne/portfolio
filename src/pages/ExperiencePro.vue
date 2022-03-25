@@ -2,51 +2,70 @@
   <div>
     <q-parallax :height="200">
       <template v-slot:media>
-        <img src="http://alltogether.be/wp-content/uploads/2017/05/projectcycle.jpg" />
+        <img
+          src="https://www.manager-go.com/assets/Uploads/_resampled/ResizedImageWzc2MCwyNTVd/parcours-professionnel.jpg"
+        />
       </template>
     </q-parallax>
-    <main style="margin-right: 200px; margin-left: 200px" class="container">
-      <div v-for="(exe, index) in experiences" :key="index" class="q-mt-md q-mb-md">
-        <section class="row q-mt-lg">
-          <div class="col-8">
-            <q-expansion-item
-              class="shadow-1 overflow-hidden"
-              style="border-radius: 20px"
-              :label="exe.titre"
-              header-class="bg-primary text-white text-h4"
-              expand-icon-class="text-white"
-            >
-              <q-card>
-                <q-card-section>
-                  <p style="font-size: 18px">{{ exe.desEntreprise }}</p>
-                </q-card-section>
-              </q-card>
-            </q-expansion-item>
-          </div>
-          <q-btn
-            :href="exe.urlEntreprise"
-            target="_blank"
-            color="accent"
-            flat
-            label="En savoir plus sur l'entreprise"
-          />
-        </section>
-        <div class="row">
-          <div v-html="exe.desEx" class="q-mt-lg col"></div>
-        </div>
+    <main style="margin-right: 50px; margin-left: 50px" class="container">
+      <div class="q-pa-md justify-center q-gutter-md">
+        <q-card
+          v-for="(exe, index) in experiences"
+          :key="index"
+          class="my-card col-4"
+          bordered
+        >
+          <q-card-section>
+            <div class="text-overline text-orange-9">Expérience professionel</div>
+            <div class="text-h5 q-mt-sm q-mb-xs">{{ exe.titre }}</div>
+            <div style="font-size: 15px" class="text-caption text-grey">
+              {{ exe.desEntreprise }}
+            </div>
+          </q-card-section>
+
+          <q-card-actions>
+            <q-btn
+              :href="exe.urlEntreprise"
+              flat
+              color="primary"
+              label="En savoir plus l'entreprise"
+            />
+
+            <q-btn
+              color="grey"
+              label="Description de l'expérience"
+              flat
+              dense
+              :icon="expandeds[index].val ? 'keyboard_arrow_up' : 'keyboard_arrow_down'"
+              @click="expandeds[index].val = !expandeds[index].val"
+            />
+          </q-card-actions>
+
+          <q-slide-transition>
+            <div v-show="expandeds[index].val">
+              <q-separator />
+              <q-card-section v-html="exe.desEx" class="text-subitle2"> </q-card-section>
+            </div>
+          </q-slide-transition>
+        </q-card>
       </div>
     </main>
   </div>
 </template>
 <script>
+import { ref } from "vue";
 export default {
   data() {
     return {
       experiences: [],
+      expandeds: [],
     };
   },
   async mounted() {
     this.experiences = await this.$store.dispatch("fetchAllExperiences");
+    for (let i = 0; i < this.experiences.length; i++) {
+      this.expandeds.push({ val: false });
+    }
   },
 };
 </script>
