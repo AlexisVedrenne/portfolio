@@ -74,7 +74,7 @@
         <q-file
           outlined
           label="Image ou vidéo pour la banière"
-          v-model="proj.details.banniere"
+          v-model="proj.details.baniere"
           accept="image/*"
         >
           <template v-slot:prepend>

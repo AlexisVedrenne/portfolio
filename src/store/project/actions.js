@@ -86,9 +86,11 @@ export async function createProject({ commit, dispatch }, { project }) {
       let tempFileContext = project.details.context.file;
       let tempFileBaniere = project.details.baniere;
       let tempFile = null;
-      project.details.baniere = await dispatch("uploadImage", {
+      tempFileBaniere = await dispatch("uploadImage", {
         image: tempFileBaniere,
       });
+      console.log(tempFileBaniere);
+      project.details.baniere = tempFileBaniere;
       if (tempFileContext) {
         if (tempFileContext.type.includes("image")) {
           tempFile = await dispatch("uploadImage", {
@@ -109,13 +111,15 @@ export async function createProject({ commit, dispatch }, { project }) {
             img = await dispatch("uploadImage", {
               image: tempFile,
             });
+            project.details.sections[i].file = img;
+            project.details.sections[i].fileType = tempFile.type;
           } else {
             img = await dispatch("uploadVideo", {
               video: tempFile,
             });
+            project.details.sections[i].file = img;
+            project.details.sections[i].fileType = tempFile.type;
           }
-          project.details.sections[i].file = img;
-          project.details.sections[i].fileType = tempFile.type;
         }
       }
     }

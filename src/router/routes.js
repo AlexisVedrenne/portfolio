@@ -34,6 +34,11 @@ const routes = [
         path: "my-project/details/:name",
         component: () => import("pages/ProjectDetails.vue"),
       },
+      {
+        name: "experience",
+        path: "professional-experience",
+        component: () => import("pages/ExperiencePro.vue"),
+      },
     ],
   },
 
@@ -58,6 +63,11 @@ const routes = [
         name: "addProject",
         path: "add-project",
         component: () => import("pages/admin/project/AddProject.vue"),
+      },
+      {
+        name: "addExeperience",
+        path: "add-experience",
+        component: () => import("pages/admin/experience/AddExperiencePro.vue"),
       },
     ],
   },

@@ -5,6 +5,7 @@ import project from "./project";
 import skill from "./skill";
 import auth from "./auth";
 import storage from "./storage";
+import experience from "./experience";
 
 /*
  * If not building with SSR mode, you can
@@ -22,6 +23,7 @@ export default store(function (/* { ssrContext } */) {
       skill,
       auth,
       storage,
+      experience,
     },
   });
 

@@ -49,9 +49,9 @@ export default defineComponent({
           link: { name: "addSkill" },
         },
         {
-          title: "Passion",
-          icon: "favorite",
-          link: { name: "hobies" },
+          title: "Exeperience",
+          icon: "stacked_line_chart",
+          link: { name: "addExeperience" },
         },
         {
           title: "Projets",
