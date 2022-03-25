@@ -3,7 +3,7 @@
     <main class="container">
       <q-parallax :height="200">
         <template v-slot:media>
-          <img src="https://pic.clubic.com/v1/images/1709824/raw" />
+          <img src="http://alltogether.be/wp-content/uploads/2017/05/projectcycle.jpg" />
         </template>
       </q-parallax>
       <section v-if="res">
@@ -21,9 +21,9 @@
               {{ titre[index] }}
             </p>
           </transition>
-          <div class="row q-col-gutter-sm q-ma-md">
+          <div class="row q-col-gutter-lg q-ma-md">
             <div v-for="(type, index) in project" :key="index" class="col-4">
-              <q-intersection transition="scale">
+              <q-intersection once transition="scale">
                 <ProjectCard :proProject="type" />
               </q-intersection>
             </div>
@@ -31,9 +31,22 @@
         </section>
       </section>
       <section class="q-mt-xl" v-else>
+        <q-btn
+          :to="{ name: 'skills' }"
+          round
+          flat
+          size="35px"
+          color="secondary"
+          icon="arrow_circle_left"
+          style="height: 100px"
+        />
         <div class="row justify-center">
           <q-spinner-cube color="primary" size="5.5em" />
         </div>
+        <p class="text-center text-grey-6 q-mt-md">
+          Si le chargement dure trop longtemps, il est probable qu'il n'y ai aucun projets
+          {{ this.$route.params.type }}
+        </p>
       </section>
     </main>
   </div>

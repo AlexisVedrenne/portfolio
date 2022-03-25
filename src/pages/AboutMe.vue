@@ -204,6 +204,9 @@
                       icon-right="send"
                       label="Voir l'école"
                       color="green"
+                      href="https://www.institut-g4.fr/"
+                      target="_blank"
+                      flat
                     ></q-btn>
                   </div>
                 </div>
@@ -223,10 +226,12 @@
                     qui me permet de posséder plusieurs cordes à mon arc.
                   </p>
                   <q-btn
-                    to="https://www.institut-g4.fr/"
+                    href="https://bts-sio.lyc-bonaparte.fr/"
                     icon-right="send"
                     label="Voir l'école"
                     color="secondary"
+                    target="_blank"
+                    flat
                   ></q-btn>
                 </div>
               </q-timeline-entry>
@@ -247,10 +252,12 @@
                     2018-2019 avec mention bien au Lycée Professionnel George Cisson.
                   </p>
                   <q-btn
-                    to="https://www.institut-g4.fr/"
+                    flat
+                    href="http://www.lycee-cisson.fr/"
                     icon-right="send"
                     label="Voir l'école"
                     color="primary"
+                    target="_blank"
                   ></q-btn>
                 </div>
               </q-timeline-entry>

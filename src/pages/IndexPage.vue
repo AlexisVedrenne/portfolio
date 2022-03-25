@@ -46,7 +46,7 @@
 
           <q-card-section>
             <p class="text-h4">L'objectif</p>
-            <p class="text-justify">
+            <p style="font-size: 17px" class="text-justify">
               L'objectif de mon portfolio est de monter et d'expliquer mon parcours
               scolaire et professionel tout au long de ma vie. Dessus on peut y retrouver
               également tous les projets que j'aurais réaliser tout au long de ma
@@ -54,7 +54,25 @@
               d'illustrer de façon simple et précise mes compténces et mes passions.
             </p>
             <p class="text-h4">PortFolio en Quasar et vue.js</p>
-            <p class="text-justify">
+            <div class="row justify-around q-mb-md">
+              <q-btn
+                flat
+                href="https://vuejs.org/"
+                target="_blank"
+                color="green"
+                label="En savoir plus sur Vue.js"
+                icon="code"
+              />
+              <q-btn
+                flat
+                href="https://quasar.dev/"
+                target="_blank"
+                color="blue"
+                label="En savoir plus sur Quasar"
+                icon="code"
+              />
+            </div>
+            <p style="font-size: 17px" class="text-justify">
               Pourquoi ces technologie et pas d'autres ? Au départ je voulais dévéloper
               mon portfolio en php natif sans utiliser de framework. Malgré le fait que je
               connais très bien le framework Symfony (qui est un framework php), j'avais
@@ -65,7 +83,17 @@
               permettrai également de monter en compténces.
             </p>
             <p class="text-h4">Base de donnée en FireBase</p>
-            <p class="text-justify">
+            <div class="row justify-center q-mb-md">
+              <q-btn
+                flat
+                href="https://firebase.google.com/"
+                target="_blank"
+                color="orange"
+                icon="local_fire_department"
+                label="En savoir plus sur Firebase"
+              />
+            </div>
+            <p style="font-size: 17px" class="text-justify">
               Pourquoi FireBase ? FireBase Firebase est une plateforme de développement
               d’applications mobiles de Google dotée de puissantes fonctionnalités pour le
               développement, la manipulation et l’amélioration des applications. Cependant

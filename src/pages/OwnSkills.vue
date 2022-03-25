@@ -7,9 +7,9 @@
         </template>
       </q-parallax>
       <section v-if="skills">
-        <div class="row q-col-gutter-sm q-ma-md">
+        <div class="row justify-center q-col-gutter-lg q-ma-md">
           <div class="col-4" v-for="(skill, index) in skills" :key="index">
-            <q-intersection transition="scale">
+            <q-intersection once transition="scale">
               <SkillCard :skill="skill" />
             </q-intersection>
           </div>
