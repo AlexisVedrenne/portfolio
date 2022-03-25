@@ -52,6 +52,35 @@ export async function fechtProject({ commit, dispatch }, { name }) {
   }
 }
 
+export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "projects"),
+      where("skills", "array-contains", skillName)
+    );
+    const res = await getDocs(q);
+    console.log(res);
+    let projects = [];
+    let skillTemp = [];
+    let tmpProject = null;
+    res.forEach((project) => {
+      tmpProject = project.data();
+      tmpProject.skills.forEach(async (skill) => {
+        skillTemp.push(await dispatch("fetchSkill", { label: skill }));
+      });
+      tmpProject.skills = skillTemp;
+      projects.push(tmpProject);
+      skillTemp = [];
+    });
+    return projects;
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
 export async function createProject({ commit, dispatch }, { project }) {
   try {
     if (project.details.state) {

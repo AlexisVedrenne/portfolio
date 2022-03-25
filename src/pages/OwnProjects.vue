@@ -53,10 +53,22 @@ export default {
     };
   },
   async mounted() {
-    const projects = await this.$store.dispatch("fetchAllProjects");
-    this.projects.perso = projects.filter((p) => p.type === "perso");
-    this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
-    this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
+    if (!this.$route.params.type) {
+      const projects = await this.$store.dispatch("fetchAllProjects");
+      this.filterProjects(projects);
+    } else {
+      const projects = await this.$store.dispatch("fetchAllProjectBySkill", {
+        skillName: this.$route.params.type,
+      });
+      this.filterProjects(projects);
+    }
+  },
+  methods: {
+    filterProjects(projects) {
+      this.projects.perso = projects.filter((p) => p.type === "perso");
+      this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
+      this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
+    },
   },
 };
 </script>

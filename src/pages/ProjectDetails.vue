@@ -31,7 +31,10 @@
           <h3 class="text-bold text-left">{{ section.titre }}</h3>
           <div v-html="section.des"></div>
         </article>
-        <article v-else class="col q-mr-lg q-mt-md items-center">
+        <article
+          v-if="section.fileType.includes('video')"
+          class="col q-mr-lg q-mt-md items-center"
+        >
           <q-video class="items-center" :ratio="16 / 9" :src="section.file" />
         </article>
         <article

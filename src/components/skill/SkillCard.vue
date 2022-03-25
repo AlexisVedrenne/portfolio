@@ -35,6 +35,7 @@
                   outline
                   :style="'color:' + skil.color"
                   :label="'Voir les projets : ' + skil.label"
+                  :href="'/#/my-projects/' + skil.label"
                 ></q-btn>
               </div>
             </q-card-section>
