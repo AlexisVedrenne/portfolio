@@ -6,29 +6,35 @@
           <img src="https://pic.clubic.com/v1/images/1709824/raw" />
         </template>
       </q-parallax>
-      <section v-for="(project, index) in projects" :key="index" class="q-ml-sm q-mt-sm">
-        <transition
-          appear
-          enter-active-class="animated zoomInLeft"
-          leave-active-class="animated zoomOutLeft"
+      <section v-if="res">
+        <section
+          v-for="(project, index) in projects"
+          :key="index"
+          class="q-ml-sm q-mt-sm"
         >
-          <p class="text-h6 text-uppercase" v-if="project != ''">
-            {{ titre[index] }}
-          </p>
-        </transition>
-        <div class="row q-col-gutter-sm q-ma-md">
-          <div v-for="(type, index) in project" :key="index" class="col-4">
-            <q-intersection transition="scale">
-              <ProjectCard :proProject="type" />
-            </q-intersection>
+          <transition
+            appear
+            enter-active-class="animated zoomInLeft"
+            leave-active-class="animated zoomOutLeft"
+          >
+            <p class="text-h6 text-uppercase" v-if="project != ''">
+              {{ titre[index] }}
+            </p>
+          </transition>
+          <div class="row q-col-gutter-sm q-ma-md">
+            <div v-for="(type, index) in project" :key="index" class="col-4">
+              <q-intersection transition="scale">
+                <ProjectCard :proProject="type" />
+              </q-intersection>
+            </div>
           </div>
-        </div>
+        </section>
       </section>
-      <!-- <section class="q-mt-xl" v-else>
+      <section class="q-mt-xl" v-else>
         <div class="row justify-center">
           <q-spinner-cube color="primary" size="5.5em" />
         </div>
-      </section> -->
+      </section>
     </main>
   </div>
 </template>
@@ -45,6 +51,7 @@ export default {
         entreprise: [],
         scolaire: [],
       },
+      res: false,
       titre: {
         perso: "Projets personels",
         entreprise: "Projet réaliser en entreprise",
@@ -53,21 +60,25 @@ export default {
     };
   },
   async mounted() {
-    if (!this.$route.params.type) {
-      const projects = await this.$store.dispatch("fetchAllProjects");
-      this.filterProjects(projects);
-    } else {
+    if (this.$route.params.type) {
       const projects = await this.$store.dispatch("fetchAllProjectBySkill", {
         skillName: this.$route.params.type,
       });
+
+      this.filterProjects(projects);
+    } else {
+      const projects = await this.$store.dispatch("fetchAllProjects");
       this.filterProjects(projects);
     }
   },
   methods: {
     filterProjects(projects) {
-      this.projects.perso = projects.filter((p) => p.type === "perso");
-      this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
-      this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
+      if (projects.length > 0) {
+        this.projects.perso = projects.filter((p) => p.type === "perso");
+        this.projects.entreprise = projects.filter((p) => p.type === "entreprise");
+        this.projects.scolaire = projects.filter((p) => p.type === "scolaire");
+        this.res = true;
+      }
     },
   },
 };

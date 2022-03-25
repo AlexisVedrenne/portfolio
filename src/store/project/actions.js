@@ -59,7 +59,6 @@ export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
       where("skills", "array-contains", skillName)
     );
     const res = await getDocs(q);
-    console.log(res);
     let projects = [];
     let skillTemp = [];
     let tmpProject = null;
