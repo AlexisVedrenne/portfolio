@@ -67,7 +67,7 @@ export default defineComponent({
           link: { name: "projects" },
         },
         {
-          title: "Expériences professionnelles",
+          title: "Mes expériences professionnelles",
           icon: "stacked_line_chart",
           link: { name: "experience" },
         },
@@ -77,7 +77,7 @@ export default defineComponent({
           link: { name: "CV" },
         },
         {
-          title: "Contact",
+          title: "Me Contacter",
           icon: "send",
           link: { name: "contact" },
         },

@@ -45,11 +45,14 @@
           <q-card-section>
             <p class="text-h4">L'objectif</p>
             <p style="font-size: 17px" class="text-justify">
-              L'objectif de mon portfolio est de monter et d'expliquer mon parcours
-              scolaire et professionel tout au long de ma vie. Dessus on peut y retrouver
-              également tous les projets que j'aurais réaliser tout au long de ma
-              scolairité mais aussi de ma carrière professionelle. Il me permetra
-              d'illustrer de façon simple et précise mes compténces et mes passions.
+              L'objectif de mon portfolio est de monter et d'expliquer mon parcour
+              scolaire et professionnel tout au long de ma vie. On peut y retrouver
+              également tous les projets que j'aurais réalisé tout au long de ma
+              scolairité mais aussi de ma carrière professionnelle. Il me permetra
+              d'illustrer de façon simple et précise mes compténces et mes passions. Un
+              autre objectif est en vigueur. Il me permettra aussi d'ajouter de nouvelles
+              compétences, projets, expérience professionnelle de façon automatisé via un
+              espace administrateur dédié.
             </p>
             <p class="text-h4">PortFolio en Quasar et vue.js</p>
             <div class="row justify-around q-mb-md">
@@ -71,13 +74,13 @@
               />
             </div>
             <p style="font-size: 17px" class="text-justify">
-              Pourquoi ces technologie et pas d'autres ? Au départ je voulais dévéloper
+              Pourquoi ces technologies et pas d'autres ? Au départ je voulai dévéloper
               mon portfolio en php natif sans utiliser de framework. Malgré le fait que je
               connais très bien le framework Symfony (qui est un framework php), j'avais
               envie de changer et donc de faire un site en php natif. Mais finalement je
-              me suis souvenue d'un projet qui a été mener lors de ma premère année
-              d'ingénièrie à l'institue G4 qui a utilisé ces technologie la. Et je me suis
-              dis que pourquoi pas utilisé les même pour mon portfolio, ce qui me
+              me suis souvenue d'un projet qui avait été mené lors de ma premère année
+              d'ingénièrie à l'Institut G4, qui lui avait utilisé ces technologies. Et je
+              me suis dis que pourquoi pas utiliser les même pour mon portfolio, ce qui me
               permettrai également de monter en compténces.
             </p>
             <p class="text-h4">Base de donnée en FireBase</p>
@@ -92,13 +95,13 @@
               />
             </div>
             <p style="font-size: 17px" class="text-justify">
-              Pourquoi FireBase ? FireBase Firebase est une plateforme de développement
+              Pourquoi FireBase ? FireBase est une plateforme de développement
               d’applications mobiles de Google dotée de puissantes fonctionnalités pour le
               développement, la manipulation et l’amélioration des applications. Cependant
               je vais seulement utiliser un outil que propose FireBase , qui est le
               FireBase Database. J'aurais effecivement pu faire une base de donnée en
-              MySql classique comme tous dévéloppeurs a déjà utilisés, mais je me suis dit
-              que c'était l'occasion de tester cette outils et de m'y mettre.
+              MySql classique, comme tous dévéloppeurs à déjà utilisés, mais je me suis
+              dit que c'était l'occasion de tester cette outils et de m'y mettre.
             </p>
           </q-card-section>
         </q-card>

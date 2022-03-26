@@ -31,12 +31,12 @@
           >
             <p style="font-size: 18px" class="text-justify">
               Je me présente, je m'appelle Alexis Vedrenne et j'ai acutellement 20 ans (je
-              suis née le 27 décembre). Je suis acutellement étudiant en école
-              d'ingénièrie à l'institue G4 de Paris. Cela fait maintenant plusieurs années
+              suis née le 27 décembre 2001). Je suis acutellement étudiant en école
+              d'ingénierie à l'institut G4 de Paris. Cela fait maintenant plusieurs années
               que je fais de l'informatique et c'est vraiment quelque chose qui me plait
-              beaucoup, bien que j'aime plein d'autre chose dans la vie. Grâce à mes
-              nombreux stage et projet professionnelles ainsi que scolaire ou encore
-              professionnelles, j'ai pu accequirie énormement de connaissances.
+              beaucoup, bien que j'apprécie énormement d'autre chose dans la vie. Grâce à
+              mes nombreux stages et projets professionnels ainsi que scolaire ou encore
+              personelles, j'ai pu accequirie énormement de connaissances.
             </p>
           </transition>
           <transition
@@ -54,12 +54,11 @@
             <p style="font-size: 18px" class="text-justify">
               Ma plus grannde passion dans la vie c'est la musique. Effectivement cela
               fait 7 ans que je pratique du
-              <span class="text-bold">piano</span> en autodidacte. Evedemant j'aime
+              <span class="text-bold">piano</span> en autodidacte. Evidemant j'aime
               beaucoup le dévéloppement aussi. J'ai déjà pu réaliser quelque projets
               personelles.Je suis également un grand fan de dessin et je dessine à mes
               heure perdu. Je trouve que c'est tout de même important de garder le contact
-              avec ses amis et j'apprecie beaucoup de sortir et de profiter en leur
-              companie.
+              avec ses amis et j'aime beaucoup sortir et profiter en leur companie.
             </p>
           </transition>
           <div class="row justify-center">
@@ -97,7 +96,7 @@
                       <q-video :src="url" :ratio="16 / 9" class="absolute-full" />
                     </q-carousel-slide>
                   </q-carousel>
-                  <p class="text-h6">Quelques dessins que j'ai réaliser</p>
+                  <p class="text-h6">Quelques dessins que j'ai réalisé</p>
                   <div class="q-pa-md">
                     <q-carousel
                       style="height: 500px"
@@ -137,11 +136,11 @@
               >
                 <div>
                   <p style="font-size: 17px" class="text-left">
-                    Pour mon future il y a plusieurs qui me tienne à coeur. Je ne sais pas
-                    trop vers quoi me diriger encore. Je tiens beaucoup d'importance au
-                    faut de bouger, me déplacer. Il y a aussi autre chose qui me tiens à
-                    coeur. J'aimerai beaucoup fonder ma propre société et innover. dans le
-                    domaine de la
+                    Pour mon future il y a plusieurs déboucher qui me tienne à coeur. Je
+                    ne sais pas trop vers quoi me diriger encore. Je tiens beaucoup
+                    d'importance au faut de bouger, me déplacer. Il y a aussi autre chose
+                    qui me tiens à coeur. J'aimerai beaucoup fonder ma propre société et
+                    innover. dans le domaine de la
                     <span class="text-bold">robotique et le développement</span>.
                     Cependant j'ai concience qu'avant de me lancer danq cette grande
                     aventure je dois d'abord apprendre des entreprises en travaillant un
@@ -152,7 +151,7 @@
             </q-intersection>
             <q-intersection transition="scale">
               <q-timeline-entry heading>
-                Mon parcours scolaire
+                Mon parcour scolaire
                 <br />
               </q-timeline-entry>
               <q-timeline-entry
@@ -192,10 +191,10 @@
               >
                 <div>
                   <p style="font-size: 17px" class="text-left">
-                    J'ai intégrer l'institue G4 en septembre 2021. C'est une école en
+                    J'ai intégré l'Institut G4 en septembre 2021. C'est une école en
                     informatique et en management qui vise la double compétences :
-                    <span class="text-bold">INFORMATIQUE ET MANAGEMENT</span>. Au long du
-                    cursus je vais passer deux titre le
+                    <span class="text-bold">INFORMATIQUE ET MANAGEMENT</span>. Tout au
+                    long du cursus je vais passer deux titres le
                     <span class="text-bold">titre 6 et 7</span>.
                   </p>
                   <div class="row justify-left">
