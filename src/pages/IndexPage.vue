@@ -14,17 +14,19 @@
           right: 0,
         }"
       >
-        <transition-group
+        <transition
           appear
           enter-active-class="animated bounceIn"
           leave-active-class="animated bounceOut"
         >
-          <img src="~assets/logome.png" style="width: 150px; height: 150px" />
-          <div class="text-h3 text-accent text-center">Bienvenue sur mon PortFolio</div>
-          <div class="text-h6 text-accent text-center">
-            Dévéloppeur, chef de projet SI
+          <div class="absolute column items-center">
+            <img src="~assets/logome.png" style="width: 150px; height: 150px" />
+            <div class="text-h3 text-accent text-center">Bienvenue sur mon PortFolio</div>
+            <div class="text-h6 text-accent text-center">
+              Dévéloppeur, chef de projet SI
+            </div>
           </div>
-        </transition-group>
+        </transition>
       </div>
     </template>
   </q-parallax>
