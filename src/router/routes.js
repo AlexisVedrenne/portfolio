@@ -44,6 +44,11 @@ const routes = [
         path: "my-cv",
         component: () => import("pages/MyCv.vue"),
       },
+      {
+        name: "contact",
+        path: "contact-me",
+        component: () => import("pages/ContactMe.vue"),
+      },
     ],
   },
 

@@ -76,6 +76,11 @@ export default defineComponent({
           icon: "description",
           link: { name: "CV" },
         },
+        {
+          title: "Contact",
+          icon: "send",
+          link: { name: "contact" },
+        },
       ],
     };
   },
