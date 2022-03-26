@@ -19,6 +19,18 @@
         <div class="row justify-center q-mb-md">
           <q-input
             required
+            v-model="experience.ville"
+            class="col-8"
+            filled
+            color="secondary"
+            outlined
+            label="Ville de l'entreprise"
+            type="textarea"
+          />
+        </div>
+        <div class="row justify-center q-mb-md">
+          <q-input
+            required
             v-model="experience.desEntreprise"
             class="col-8"
             filled
@@ -110,6 +122,7 @@ export default {
       utils: useQuasar(),
       loading: false,
       experience: {
+        ville: "",
         titre: "",
         desEntreprise: "",
         desEx: "",

@@ -71,6 +71,11 @@ export default defineComponent({
           icon: "stacked_line_chart",
           link: { name: "experience" },
         },
+        {
+          title: "Mon CV",
+          icon: "description",
+          link: { name: "CV" },
+        },
       ],
     };
   },

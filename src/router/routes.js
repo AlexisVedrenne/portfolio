@@ -39,6 +39,11 @@ const routes = [
         path: "professional-experience",
         component: () => import("pages/ExperiencePro.vue"),
       },
+      {
+        name: "CV",
+        path: "my-cv",
+        component: () => import("pages/MyCv.vue"),
+      },
     ],
   },
 
