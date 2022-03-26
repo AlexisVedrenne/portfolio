@@ -9,6 +9,7 @@
     "start": "quasar dev",
     "dev": "cross-env QENV=DEV quasar dev",
     "buildweb": "cross-env QENV=DEV quasar build",
+    "deploy": "push-dir --dir=dist/spa --remote=gh-pages --branch=master",
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,html,md,json}\" --ignore-path .gitignore",
     "test": "echo \"No test specified\" && exit 0"
@@ -37,7 +38,8 @@
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-vue": "^8.5.0",
     "eslint-webpack-plugin": "^3.1.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "push-dir": "^0.4.1"
   },
   "browserslist": [
     "last 10 Chrome versions",
