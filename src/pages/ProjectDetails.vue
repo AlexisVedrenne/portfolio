@@ -8,8 +8,17 @@
         appear
         enter-active-class="animated flipInX"
         leave-active-class="animated flipInX"
+        class="gt-sm"
       >
         <h1 class="text-accent text-bold">{{ project.name }}</h1>
+      </transition>
+      <transition
+        appear
+        enter-active-class="animated flipInX"
+        leave-active-class="animated flipInX"
+        class="lt-sm"
+      >
+        <h3 class="text-accent text-bold lt-sm">{{ project.name }}</h3>
       </transition>
     </q-parallax>
 
@@ -24,7 +33,7 @@
           icon="arrow_circle_left"
           style="height: 100px"
         />
-        <article v-if="project.details.context.file" class="col q-mr-md">
+        <article v-if="project.details.context.file" class="col-sm q-mr-md">
           <transition
             appear
             enter-active-class="animated zoomIn"
@@ -37,7 +46,7 @@
             />
           </transition>
         </article>
-        <article class="col">
+        <article class="col-sm">
           <transition
             appear
             enter-active-class="animated fadeInRight"
@@ -59,7 +68,10 @@
         :key="index"
         class="row justify-center items-center q-ml-md q-mt-lg q-mb-lg"
       >
-        <article v-if="section.file && section.fileType.includes('image')" class="col-8">
+        <article
+          v-if="section.file && section.fileType.includes('image')"
+          class="col-sm-8"
+        >
           <q-intersection transition="scale">
             <h3 class="text-bold text-left">{{ section.titre }}</h3>
             <div v-html="section.des"></div>
@@ -67,10 +79,10 @@
         </article>
         <article
           v-if="section.file && section.fileType.includes('video')"
-          class="col q-mr-lg q-mt-md items-center"
+          class="col gt-sm q-mr-lg q-mt-md items-center"
         >
           <q-intersection transition="scale">
-            <q-video class="items-center" :ratio="16 / 9" :src="section.file" />
+            <q-video :ratio="16 / 9" :src="section.file" />
           </q-intersection>
         </article>
         <article
@@ -81,11 +93,17 @@
             <q-img class="items-center" :src="section.file" />
           </q-intersection>
         </article>
-        <article v-else class="col-8">
+        <article v-else class="col-sm-8">
           <q-intersection transition="scale">
             <h3 class="text-bold text-left">{{ section.titre }}</h3>
             <div v-html="section.des"></div>
           </q-intersection>
+        </article>
+        <article
+          v-if="section.file && section.fileType.includes('video')"
+          class="col lt-sm q-mr-lg q-mt-md items-center"
+        >
+          <q-video :ratio="16 / 9" :src="section.file" />
         </article>
       </section>
     </main>

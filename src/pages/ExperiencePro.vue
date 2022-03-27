@@ -7,15 +7,15 @@
         />
       </template>
     </q-parallax>
-    <main style="margin-right: 50px; margin-left: 50px" class="container">
-      <div class="q-pa-md column justify-center q-gutter-md">
+    <main class="container">
+      <div class="q-pa-md column justify-center q-gutter-lg">
         <q-intersection
           v-for="(exe, index) in experiences"
           :key="index"
           transition="scale"
           class="q-mb-md"
         >
-          <q-card class="my-card col-4" bordered>
+          <q-card class="my-card col-sm-4" bordered>
             <q-card-section>
               <div class="text-overline text-orange-9">Ville de {{ exe.ville }}</div>
               <div class="text-h5 q-mt-sm q-mb-xs">{{ exe.titre }}</div>

@@ -2,7 +2,7 @@
   <div>
     <div class="container">
       <div class="row justify-center">
-        <div class="col">
+        <div class="col-sm" style="width: 350px">
           <q-card class="my-card">
             <q-parallax :height="150" :width="100" :src="skil.image">
               <h1 class="text-dark">{{ skil.label }}</h1>

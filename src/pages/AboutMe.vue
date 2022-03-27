@@ -2,12 +2,9 @@
   <div>
     <main class="container">
       <q-parallax :height="150">
-        <template v-slot:media>
-          <img src="" />
-        </template>
-        <h1 class="text-dark text-bold">Qui suis-je ?</h1>
+        <h1 class="text-dark text-bold gt-sm">Qui suis-je ?</h1>
+        <h3 class="text-dark text-bold lt-md">Qui suis-je ?</h3>
       </q-parallax>
-
       <section class="row justify-center">
         <transition
           appear
@@ -16,7 +13,7 @@
         >
           <q-img class="col-md" style="height: 500px" src="~assets/moi.jpg" />
         </transition>
-        <article class="col-6 q-ma-sm q-mr-md q-ml-md">
+        <article class="col-md-6 q-ma-sm q-mr-md q-ml-md">
           <transition
             appear
             enter-active-class="animated fadeInRight"
@@ -123,7 +120,12 @@
 
       <section class="row justify-center">
         <div class="q-px-lg q-pb-md">
-          <q-timeline layout="loose" color="accent">
+          <q-timeline
+            :layout="
+              utils.screen.lt.sm ? 'dense' : utils.screen.lt.md ? 'comfortable' : 'loose'
+            "
+            color="accent"
+          >
             <q-intersection transition="scale">
               <q-timeline-entry heading>
                 Mon future
@@ -282,6 +284,7 @@
 
 <script>
 import { ref } from "vue";
+import { useQuasar } from "quasar";
 export default {
   name: "aboutMe",
   data() {
@@ -292,6 +295,7 @@ export default {
       model: ref(0),
       vidModel: ref(0),
       autoplay: true,
+      utils: useQuasar(),
     };
   },
   async mounted() {

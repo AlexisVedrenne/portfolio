@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-right: 400px; margin-left: 400px">
+  <div :style="utils.screen.gt.md ? 'margin-right: 400px; margin-left: 400px' : ''">
     <q-intersection transition="scale">
       <h6 class="text-center q-mt-lg q-mb-lg">Visualisation de mon CV</h6>
     </q-intersection>
@@ -125,11 +125,13 @@
 </template>
 <script>
 import html2pdf from "html2pdf.js";
+import { useQuasar } from "quasar";
 export default {
   data() {
     return {
       loading: false,
       skills: null,
+      utils: useQuasar(),
       formations: [
         {
           ligne:

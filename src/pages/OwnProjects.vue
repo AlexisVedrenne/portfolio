@@ -21,8 +21,8 @@
               {{ titre[index] }}
             </p>
           </transition>
-          <div class="row q-col-gutter-lg q-ma-md">
-            <div v-for="(type, index) in project" :key="index" class="col-4">
+          <div class="row justify-center q-col-gutter-lg q-mt-sm">
+            <div v-for="(type, index) in project" :key="index" class="col-md-4 col-sm-5">
               <q-intersection transition="scale">
                 <ProjectCard :proProject="type" />
               </q-intersection>

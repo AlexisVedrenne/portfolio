@@ -2,10 +2,14 @@
   <q-layout view="lHh Lpr lFf">
     <q-header reveal height-hint elevated>
       <q-toolbar inset>
-        <q-toolbar-title><strong>Alexis Vedrenne</strong> Portfolio</q-toolbar-title>
-        <p>Etudiant en cyle ingéniérie | Chef de projet SI</p>
+        <q-toolbar-title
+          ><strong>Alexis Vedrenne</strong
+          ><span class="gt-sm">Portfolio</span></q-toolbar-title
+        >
+        <p class="gt-sm q-mt-md">Etudiant en cyle ingéniérie | Chef de projet SI</p>
+        <q-btn @click="drawer = !drawer" class="lt-lg" flat round dense icon="menu" />
       </q-toolbar>
-      <q-toolbar class="row justify-center secon">
+      <q-toolbar class="gt-md row justify-center">
         <q-list class="secondary row justify-center">
           <q-item
             v-for="(link, index) in linksList"
@@ -25,6 +29,28 @@
         </q-list>
       </q-toolbar>
     </q-header>
+    <q-drawer bordered class="lt-lg" v-model="drawer" :width="200">
+      <q-scroll-area class="fit">
+        <q-list class="row justify-center">
+          <q-item
+            v-for="(link, index) in linksList"
+            :key="index"
+            :to="link.link"
+            :icon="link.icon"
+            :name="link.title"
+            :label="link.title"
+            class="hn-link text-center"
+            color="primary"
+            active-class="secondary"
+          >
+            <q-item-section avatar class="items-center">
+              <q-icon :name="link.icon" />
+              <p>{{ link.title }}</p>
+            </q-item-section>
+          </q-item>
+        </q-list>
+      </q-scroll-area>
+    </q-drawer>
 
     <q-page-container>
       <router-view />
@@ -44,6 +70,7 @@ export default defineComponent({
   name: "MainLayout",
   data: function () {
     return {
+      drawer: false,
       date: new Date(),
       linksList: [
         {

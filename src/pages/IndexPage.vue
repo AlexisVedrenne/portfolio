@@ -20,7 +20,11 @@
           leave-active-class="animated bounceOut"
         >
           <div class="absolute column items-center">
-            <img src="~assets/logome.png" style="width: 150px; height: 150px" />
+            <img
+              class="gt-xs"
+              src="~assets/logome.png"
+              style="width: 150px; height: 150px"
+            />
             <div class="text-h3 text-accent text-center">Bienvenue sur mon PortFolio</div>
             <div class="text-h6 text-accent text-center">
               Dévéloppeur, chef de projet SI
@@ -40,12 +44,16 @@
       >
         <q-card style="width: 800px" class="my-card">
           <q-card-section>
-            <p class="text-h3 text-center">Informations sur le portfolio en lui même</p>
+            <p class="gt-sm text-h3 text-center">
+              Informations sur le portfolio en lui même
+            </p>
+            <p class="lt-sm text-h6 text-center">Information sur le portfolio</p>
           </q-card-section>
           <q-separator inset />
 
           <q-card-section>
-            <p class="text-h4">L'objectif</p>
+            <p class="gt-sm text-h4">L'objectif</p>
+            <p class="lt-sm text-h6">L'objectif</p>
             <p style="font-size: 17px" class="text-justify">
               L'objectif de mon portfolio est de monter et d'expliquer mon parcour
               scolaire et professionnel tout au long de ma vie. On peut y retrouver
@@ -56,9 +64,27 @@
               compétences, projets, expérience professionnelle de façon automatisé via un
               espace administrateur dédié.
             </p>
-            <p class="text-h4">PortFolio en Quasar et vue.js</p>
+            <p class="gt-sm text-h4">PortFolio en Quasar et vue.js</p>
+            <p class="lt-sm text-h6">PortFolio en Quasar et vue.js</p>
             <div class="row justify-around q-mb-md">
               <q-btn
+                class="lt-sm"
+                round
+                href="https://vuejs.org/"
+                target="_blank"
+                color="green"
+                icon="V"
+              />
+              <q-btn
+                class="lt-sm"
+                round
+                href="https://quasar.dev/"
+                target="_blank"
+                color="blue"
+                icon="Q"
+              />
+              <q-btn
+                class="gt-sm"
                 flat
                 href="https://vuejs.org/"
                 target="_blank"
@@ -67,6 +93,7 @@
                 icon="code"
               />
               <q-btn
+                class="gt-sm"
                 flat
                 href="https://quasar.dev/"
                 target="_blank"
@@ -85,7 +112,8 @@
               me suis dis que pourquoi pas utiliser les même pour mon portfolio, ce qui me
               permettrai également de monter en compténces.
             </p>
-            <p class="text-h4">Base de donnée en FireBase</p>
+            <p class="gt-sm text-h4">Base de donnée en FireBase</p>
+            <p class="lt-sm text-h6">Base de donnée en FireBase</p>
             <div class="row justify-center q-mb-md">
               <q-btn
                 flat
