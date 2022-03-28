@@ -3,7 +3,7 @@
     <q-header reveal height-hint elevated>
       <q-toolbar inset>
         <q-toolbar-title
-          ><strong>Alexis Vedrenne</strong
+          ><strong><q-btn flat :to="{ name: 'login' }" label="Alexis Vedrenne" /></strong
           ><span class="gt-sm">Portfolio</span></q-toolbar-title
         >
         <p class="gt-sm q-mt-md">Etudiant en cyle ingéniérie | Chef de projet SI</p>

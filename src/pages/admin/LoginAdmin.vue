@@ -43,10 +43,18 @@
         <q-btn
           :loading="loading"
           outline
-          color="secondary"
+          color="accent"
           label="Connexion"
           icon-right="login"
           type="submit"
+        ></q-btn>
+        <q-btn
+          class="q-ml-sm"
+          flat
+          color="secondary"
+          label="Retouner à l'accueil"
+          icon="home"
+          :to="{ name: 'home' }"
         ></q-btn>
       </div>
     </div>
@@ -67,16 +75,16 @@ export default {
       user: true,
     };
   },
-  mounted() {
-    if (this.$q.sessionStorage.getItem("user")) {
-      this.user = false;
-    }
-  },
+
   methods: {
-    logIn() {
+    async logIn() {
       this.loading = true;
-      let res = this.$store.dispatch("singIn", { infos: this.infos });
+      await this.$store.dispatch("singIn", { infos: this.infos });
       this.loading = false;
+      let user = this.$store.getters.getCurrentUser;
+      if (user) {
+        this.$router.push({ name: "addSkill" });
+      }
     },
   },
 };
