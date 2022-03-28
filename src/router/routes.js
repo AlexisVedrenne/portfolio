@@ -79,6 +79,11 @@ const routes = [
         path: "add-experience",
         component: () => import("pages/admin/experience/AddExperiencePro.vue"),
       },
+      {
+        name: "skillsIndex",
+        path: "skills",
+        component: () => import("pages/admin/skill/IndexSkill.vue"),
+      },
     ],
   },
   {
