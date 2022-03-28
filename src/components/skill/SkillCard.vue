@@ -4,9 +4,12 @@
       <div class="row justify-center">
         <div class="col-sm" style="width: 350px">
           <q-card class="my-card">
-            <q-parallax :height="150" :width="100" :src="skil.image">
+            <q-parallax class="gt-md" :height="150" :width="100" :src="skil.image">
               <h1 class="text-dark">{{ skil.label }}</h1>
             </q-parallax>
+            <q-img class="lt-md" style="height: 180px" :src="skil.image">
+              <h1 class="text-dark text-center">{{ skil.label }}</h1>
+            </q-img>
 
             <q-card-section>
               <div class="text-overline">

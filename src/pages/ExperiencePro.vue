@@ -7,9 +7,10 @@
         />
       </template>
     </q-parallax>
-    <main class="container">
+    <main class="container q-mb-md">
       <div class="q-pa-md column justify-center q-gutter-lg">
         <q-intersection
+          :once="utils.screen.lt.md ? true : false"
           v-for="(exe, index) in experiences"
           :key="index"
           transition="scale"
@@ -58,11 +59,13 @@
 </template>
 <script>
 import { ref } from "vue";
+import { useQuasar } from "quasar";
 export default {
   data() {
     return {
       experiences: [],
       expandeds: [],
+      utils: useQuasar(),
     };
   },
   async mounted() {

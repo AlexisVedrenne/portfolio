@@ -9,6 +9,7 @@
     "start": "quasar dev",
     "dev": "cross-env QENV=DEV quasar dev",
     "buildweb": "cross-env QENV=DEV quasar build",
+    "buildAndroid": "cross-env QENV=DEV quasar dev -m cordova -T android",
     "deploy": "push-dir --dir=dist/spa --remote=gh-pages --branch=dev",
     "lint": "eslint --ext .js,.vue ./",
     "format": "prettier --write \"**/*.{js,vue,html,md,json}\" --ignore-path .gitignore",

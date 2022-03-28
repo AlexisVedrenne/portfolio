@@ -2,9 +2,9 @@
   <div>
     <q-intersection transition="scale">
       <h5 class="text-bold text-center">Vous voulez me contacter ?</h5>
-      <q-form @submit="submit">
-        <div class="row justify-center">
-          <div class="col-5 q-mb-md">
+      <q-form class="q-mb-lg" @submit="submit">
+        <div :class="utils.screen.lt.md ? '' : 'row justify-center'">
+          <div class="col-md-5 q-mb-md">
             <q-input
               required
               type="text"
@@ -13,8 +13,8 @@
             />
           </div>
         </div>
-        <div class="row justify-center">
-          <div class="col-5 q-mb-md">
+        <div :class="utils.screen.lt.md ? '' : 'row justify-center'">
+          <div class="col-md-5 q-mb-md">
             <q-input
               required
               type="text"
@@ -23,8 +23,8 @@
             />
           </div>
         </div>
-        <div class="row justify-center">
-          <div class="col-5 q-mb-md">
+        <div :class="utils.screen.lt.md ? '' : 'row justify-center'">
+          <div class="col-md-5 q-mb-md">
             <q-input
               type="text"
               label="Entrez le nom de votre entreprise..."
@@ -32,8 +32,8 @@
             />
           </div>
         </div>
-        <div class="row justify-center">
-          <div class="col-5 q-mb-md">
+        <div :class="utils.screen.lt.md ? '' : 'row justify-center'">
+          <div class="col-md-5 q-mb-md">
             <q-input
               required
               type="email"
@@ -42,8 +42,8 @@
             />
           </div>
         </div>
-        <div class="row justify-center">
-          <div class="col-5 q-mb-md">
+        <div :class="utils.screen.lt.md ? '' : 'row justify-center'">
+          <div class="col-md-5 q-mb-md">
             <q-input
               required
               type="textarea"

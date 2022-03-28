@@ -72,7 +72,7 @@
           v-if="section.file && section.fileType.includes('image')"
           class="col-sm-8"
         >
-          <q-intersection transition="scale">
+          <q-intersection :once="utils.screen.lt.md ? true : false" transition="scale">
             <h3 class="text-bold text-left">{{ section.titre }}</h3>
             <div v-html="section.des"></div>
           </q-intersection>
@@ -81,7 +81,7 @@
           v-if="section.file && section.fileType.includes('video')"
           class="col gt-sm q-mr-lg q-mt-md items-center"
         >
-          <q-intersection transition="scale">
+          <q-intersection :once="utils.screen.lt.md ? true : false" transition="scale">
             <q-video :ratio="16 / 9" :src="section.file" />
           </q-intersection>
         </article>
@@ -89,12 +89,12 @@
           v-if="section.file && section.fileType.includes('image')"
           class="col q-mr-md items-center"
         >
-          <q-intersection transition="scale">
+          <q-intersection :once="utils.screen.lt.md ? true : false" transition="scale">
             <q-img class="items-center" :src="section.file" />
           </q-intersection>
         </article>
         <article v-else class="col-sm-8">
-          <q-intersection transition="scale">
+          <q-intersection :once="utils.screen.lt.md ? true : false" transition="scale">
             <h3 class="text-bold text-left">{{ section.titre }}</h3>
             <div v-html="section.des"></div>
           </q-intersection>
@@ -111,10 +111,12 @@
   <div v-else></div>
 </template>
 <script>
+import { useQuasar } from "quasar";
 export default {
   data() {
     return {
       project: null,
+      utils: useQuasar(),
     };
   },
   async mounted() {

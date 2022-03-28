@@ -6,6 +6,7 @@
     <div class="row justify-center">
       <q-intersection transition="scale">
         <q-btn
+          :once="utils.screen.lt.md ? true : false"
           class="q-mb-md"
           flat
           icon="download"
@@ -17,7 +18,7 @@
       </q-intersection>
     </div>
     <q-intersection transition="scale">
-      <q-card class="q-mb-l" id="pdf">
+      <q-card :hidden="hidden" class="q-mb-l" id="pdf">
         <div class="bg-grey column justify-end q-mr-md q-ml-md" style="height: 80px">
           <h6 class="text-right text-bold q-mt-sm q-mr-sm col text-uppercase">
             Poste recherché : Une alternance
@@ -119,6 +120,14 @@
           </div>
         </q-card-section>
       </q-card>
+      <q-card class="bg-info" v-if="utils.screen.lt.md">
+        <q-card-section>
+          <h6>
+            La taille de l'écran est trop petite pour afficher le CV, cependant il est
+            possible de le télécharger.
+          </h6>
+        </q-card-section>
+      </q-card>
     </q-intersection>
     <div id="pdfFin" />
   </div>
@@ -129,6 +138,7 @@ import { useQuasar } from "quasar";
 export default {
   data() {
     return {
+      hidden: false,
       loading: false,
       skills: null,
       utils: useQuasar(),
@@ -240,10 +250,18 @@ export default {
     };
   },
   async mounted() {
+    this.setHidden();
     let skills = await this.$store.dispatch("fetchAllSkills");
     this.skills = skills.filter((s) => s.level > 70);
   },
   methods: {
+    setHidden() {
+      if (this.utils.screen.gt.md) {
+        this.hidden = false;
+      } else {
+        this.hidden = true;
+      }
+    },
     async toPdf() {
       this.loading = true;
       var opt = {
@@ -258,7 +276,9 @@ export default {
           avoid: "img",
         },
       };
+      this.hidden = false;
       await html2pdf().set(opt).from(document.getElementById("pdf")).save();
+      this.setHidden();
       this.loading = false;
     },
   },

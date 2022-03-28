@@ -4,7 +4,8 @@
       <div class="row justify-center">
         <div class="col-sm" style="width: 350px">
           <q-card class="my-card">
-            <q-parallax :height="150" :width="100" :src="project.image"> </q-parallax>
+            <q-parallax class="gt-md" :height="150" :width="100" :src="project.image" />
+            <q-img class="lt-md" style="height: 150px" :src="project.image" />
             <q-card-section>
               <div class="text-h6">{{ project.name }}</div>
             </q-card-section>

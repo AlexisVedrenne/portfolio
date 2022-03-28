@@ -1,7 +1,7 @@
 <template>
   <div>
     <main class="container">
-      <q-parallax :height="150">
+      <q-parallax src="" :height="150">
         <h1 class="text-dark text-bold gt-sm">Qui suis-je ?</h1>
         <h3 class="text-dark text-bold lt-md">Qui suis-je ?</h3>
       </q-parallax>
@@ -127,13 +127,14 @@
             color="accent"
           >
             <q-intersection transition="scale">
-              <q-timeline-entry heading>
+              <q-timeline-entry class="gt-md" heading>
                 Mon future
                 <br />
               </q-timeline-entry>
+              <h5 class="lt-md text-bold">Mon future</h5>
               <q-timeline-entry
                 title="Après mes études"
-                subtitle="Voyage ? Travail ? Entreprenaria"
+                subtitle="Voyage ? Travail ? Entreprenariat"
                 side="left"
               >
                 <div>
@@ -152,10 +153,11 @@
               </q-timeline-entry>
             </q-intersection>
             <q-intersection transition="scale">
-              <q-timeline-entry heading>
-                Mon parcour scolaire
+              <q-timeline-entry class="gt-md" heading>
+                Mon parcours scolaire
                 <br />
               </q-timeline-entry>
+              <h5 class="lt-md text-bold">Mon parcours scolaire</h5>
               <q-timeline-entry
                 title="Titre 7, Institut G4 - Paris, 75"
                 subtitle="Titre 7 (En cours)"
