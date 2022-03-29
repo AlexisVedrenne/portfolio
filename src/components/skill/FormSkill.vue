@@ -93,6 +93,7 @@ export default {
       this.loading = true;
       let rep = await this.$store.dispatch("createSkills", { skill: this.ski });
       this.loading = false;
+      this.$router.push({ name: "skillsIndex" });
     },
   },
 };

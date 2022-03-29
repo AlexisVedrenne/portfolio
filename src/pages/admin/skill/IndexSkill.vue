@@ -20,7 +20,7 @@
     >
       <q-item-label header>Listes des compétences existantes</q-item-label>
       <q-intersection
-        once
+        :hidden="hidden"
         transition="scale"
         v-for="(skill, index) in skills"
         :key="index"
@@ -96,13 +96,19 @@ export default {
     return {
       skills: [],
       utils: useQuasar(),
+      hidden: false,
     };
   },
   async mounted() {
-    this.skills = await this.$store.dispatch("fetchAllSkills");
+    await this.refresh();
   },
   methods: {
-    confirm(skill) {
+    async refresh() {
+      this.hidden = true;
+      this.skills = await this.$store.dispatch("fetchAllSkills");
+      this.hidden = false;
+    },
+    async confirm(skill) {
       this.utils
         .dialog({
           title: "Attention !",
@@ -120,12 +126,11 @@ export default {
             color: "secondary",
           },
         })
-        .onOk(() => {
-          // console.log('>>>> OK')
+        .onOk(async () => {
+          await this.$store.dispatch("deleteSkill", { label: skill });
+          await this.refresh();
         })
-        .onOk(() => {
-          // console.log('>>>> second OK catcher')
-        })
+        .onOk(async () => {})
         .onCancel(() => {
           // console.log('>>>> Cancel')
         })

@@ -7,6 +7,8 @@ import {
   query,
   orderBy,
   where,
+  deleteDoc,
+  doc,
 } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
@@ -57,6 +59,28 @@ export async function createSkills({ commit }, { skill }) {
     });
     commit("addSkill", { skillRef });
     return skillRef;
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function deleteSkill({ commit }, { label }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "skills"),
+      where("label", "==", label)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    deleteDoc(doc(fire.firebasebd, "skills", id));
+    Notify.create({
+      message: "La compétence " + label + " a été supprimer !",
+      color: "warning",
+      textColor: "dark",
+    });
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,
