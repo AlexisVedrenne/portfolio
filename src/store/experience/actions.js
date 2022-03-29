@@ -7,6 +7,9 @@ import {
   query,
   orderBy,
   where,
+  deleteDoc,
+  doc,
+  setDoc,
 } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
@@ -40,6 +43,66 @@ export async function fetchAllExperiences({ commit }) {
     });
     commit("setExperiences", { ex });
     return ex;
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function fetchExperience({ commit }, { titre }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "experience"),
+      where("titre", "==", titre)
+    );
+    const res = await getDocs(q);
+    return res.docs[0].data();
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function deleteExperience({ commit }, { titre }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "experience"),
+      where("titre", "==", titre)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    await deleteDoc(doc(fire.firebasebd, "experience", id));
+    Notify.create({
+      message: "L'expérience pro  " + titre + " a été supprimer !",
+      color: "warning",
+      textColor: "dark",
+    });
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function updateExperience({ commit }, { experience, lastTitre }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "experience"),
+      where("titre", "==", lastTitre)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    await setDoc(doc(fire.firebasebd, "experience", id), experience);
+    Notify.create({
+      message: "La compétence " + lastTitre + " a été mise à jour !",
+      color: "info",
+      textColor: "dark",
+    });
   } catch (e) {
     Notify.create({
       message: "Une erreur s'est produite : " + e.message,

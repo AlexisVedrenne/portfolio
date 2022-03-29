@@ -89,6 +89,17 @@ const routes = [
         path: "skill/edit/:label",
         component: () => import("pages/admin/skill/EditSkill.vue"),
       },
+      {
+        name: "experiencesIndex",
+        path: "experiences",
+        component: () =>
+          import("pages/admin/experience/IndexExperiencePro.vue"),
+      },
+      {
+        name: "editExperience",
+        path: "experience/edit/:titre",
+        component: () => import("pages/admin/experience/EditExperiencePro.vue"),
+      },
     ],
   },
   {

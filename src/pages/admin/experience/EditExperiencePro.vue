@@ -8,11 +8,16 @@
       color="secondary"
       icon="arrow_circle_left"
     />
-    <FormExperience :propsExperience="experience" />
+    <div v-if="experience">
+      <FormExperience
+        :lastTitre="this.$route.params.titre"
+        :update="true"
+        :propsExperience="experience"
+      />
+    </div>
   </div>
 </template>
 <script>
-import { useQuasar } from "quasar";
 import FormExperience from "src/components/experience/FormExperience.vue";
 export default {
   components: {
@@ -20,16 +25,13 @@ export default {
   },
   data() {
     return {
-      utils: useQuasar(),
-      loading: false,
-      experience: {
-        ville: "",
-        titre: "",
-        desEntreprise: "",
-        desEx: "",
-        urlEntreprise: "",
-      },
+      experience: null,
     };
+  },
+  async mounted() {
+    this.experience = await this.$store.dispatch("fetchExperience", {
+      titre: this.$route.params.titre,
+    });
   },
 };
 </script>

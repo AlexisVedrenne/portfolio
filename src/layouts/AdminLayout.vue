@@ -65,7 +65,7 @@ export default defineComponent({
         {
           title: "Exeperience",
           icon: "stacked_line_chart",
-          link: { name: "addExeperience" },
+          link: { name: "experiencesIndex" },
         },
         {
           title: "Projets",

@@ -1,11 +1,11 @@
 <template>
   <div class="column items-center">
     <q-btn
-      :to="{ name: 'addSkill' }"
+      :to="{ name: 'addExeperience' }"
       class="q-mb-md q-mt-md"
       color="secondary"
       flat
-      label="Ajouter une compétence"
+      label="Ajouter une experience pro"
     />
     <q-list
       bordered
@@ -18,51 +18,22 @@
           : 'width: 1000px'
       "
     >
-      <q-item-label header>Listes des compétences existantes</q-item-label>
+      <q-item-label header>Listes des experiences pro existantes</q-item-label>
       <q-intersection
         :hidden="hidden"
         transition="scale"
-        v-for="(skill, index) in skills"
+        v-for="(experience, index) in experiences"
         :key="index"
       >
         <q-item>
-          <q-item-section avatar top>
-            <q-img rounded :src="skill.image" style="height: 34px; width: 34px" />
+          <q-item-section top class="col">
+            <q-item-label class="q-mt-sm">{{ experience.titre }}</q-item-label>
           </q-item-section>
 
-          <q-item-section top class="col-2 gt-sm">
-            <q-item-label class="q-mt-sm">{{ skill.label }}</q-item-label>
-          </q-item-section>
-
-          <q-item-section top>
+          <q-item-section class="gt-sm" top>
             <q-item-label lines="1">
-              <span :style="'color:' + skill.color" class="text-weight-medium"
-                >Type de compétence</span
-              >
-              <span class="text-grey-8 text-bold"> - {{ skill.type }}</span>
-            </q-item-label>
-            <q-item-label
-              lines="1"
-              class="gt-xs q-mt-xs text-body2 text-weight-bold text-primary text-uppercase"
-            >
-              <q-linear-progress
-                size="25px"
-                :value="skill.level / 100"
-                class="q-mt-md"
-                :color="
-                  skill.level < 30
-                    ? 'negative'
-                    : '' || (skill.level >= 30 && skill.level < 70)
-                    ? 'warning'
-                    : '' || skill.level >= 70
-                    ? 'positive'
-                    : ''
-                "
-              >
-                <div class="absolute-full flex flex-center">
-                  <q-badge color="white" text-color="accent" :label="skill.level + '%'" />
-                </div>
-              </q-linear-progress>
+              <span class="text-weight-medium">Ville </span>
+              <span class="text-grey-8 text-bold"> - {{ experience.ville }}</span>
             </q-item-label>
           </q-item-section>
 
@@ -75,10 +46,10 @@
                 dense
                 round
                 icon="delete"
-                @click="confirm(skill.label)"
+                @click="confirm(experience.titre)"
               />
               <q-btn
-                :href="'/#/admin/skill/edit/' + skill.label"
+                :href="'/#/admin/experience/edit/' + experience.titre"
                 size="12px"
                 flat
                 dense
@@ -99,7 +70,7 @@ import { useQuasar } from "quasar";
 export default {
   data() {
     return {
-      skills: [],
+      experiences: [],
       utils: useQuasar(),
       hidden: false,
     };
@@ -110,14 +81,14 @@ export default {
   methods: {
     async refresh() {
       this.hidden = true;
-      this.skills = await this.$store.dispatch("fetchAllSkills");
+      this.experiences = await this.$store.dispatch("fetchAllExperiences");
       this.hidden = false;
     },
-    async confirm(skill) {
+    async confirm(experience) {
       this.utils
         .dialog({
           title: "Attention !",
-          message: "Vous etes sur de vouloir supprimer la compétence " + skill + " ?",
+          message: "Vous etes sur de vouloir supprimer l'experience " + experience + " ?",
           cancel: true,
           persistent: true,
           ok: {
@@ -132,7 +103,7 @@ export default {
           },
         })
         .onOk(async () => {
-          await this.$store.dispatch("deleteSkill", { label: skill });
+          await this.$store.dispatch("deleteExperience", { titre: experience });
           await this.refresh();
         })
         .onOk(async () => {})

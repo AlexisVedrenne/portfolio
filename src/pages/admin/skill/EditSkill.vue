@@ -1,5 +1,13 @@
 <template>
   <div class="q-mt-md q-mb-md" v-if="skill">
+    <q-btn
+      :to="{ name: 'skillsIndex' }"
+      round
+      flat
+      size="35px"
+      color="secondary"
+      icon="arrow_circle_left"
+    />
     <section class="row justify-center">
       <div class="col-10">
         <FormSkill :lastLabel="this.$route.params.label" :update="true" :skill="skill" />

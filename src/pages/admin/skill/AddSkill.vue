@@ -1,6 +1,14 @@
 <template>
   <div>
     <div class="container">
+      <q-btn
+        :to="{ name: 'skillsIndex' }"
+        round
+        flat
+        size="35px"
+        color="secondary"
+        icon="arrow_circle_left"
+      />
       <div class="row justify-center">
         <div class="col-6 q-mr-xl">
           <FormSkill :skill="skill" />
