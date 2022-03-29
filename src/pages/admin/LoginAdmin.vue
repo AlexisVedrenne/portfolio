@@ -2,7 +2,7 @@
   <q-form @submit="logIn" v-if="user">
     <div class="container q-t-sm">
       <h5 class="text-center">Entrer vos informations de connexion</h5>
-      <div class="row justify-center">
+      <div :class="utils.screen.gt.md ? 'row justify-center' : ''">
         <div class="col-5 q-mb-sm">
           <q-input
             filled
@@ -22,7 +22,7 @@
           </q-input>
         </div>
       </div>
-      <div class="row justify-center">
+      <div :class="utils.screen.gt.md ? 'row justify-center' : ''">
         <div class="col-5 q-mb-sm">
           <q-input
             type="password"
@@ -71,7 +71,7 @@ export default {
         password: null,
       },
       loading: false,
-      $q: useQuasar(),
+      utils: useQuasar(),
       user: true,
     };
   },
