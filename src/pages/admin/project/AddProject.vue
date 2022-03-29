@@ -37,6 +37,7 @@ export default {
         name: "",
         skills: [],
         type: "",
+        imageName: "",
         details: {
           baniere: null,
           state: false,

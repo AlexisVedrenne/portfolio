@@ -7,6 +7,9 @@ import {
   query,
   orderBy,
   where,
+  deleteDoc,
+  doc,
+  setDoc,
 } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
@@ -17,7 +20,7 @@ export async function fetchAllProjects({ commit, dispatch }) {
     let projects = [];
     let skillTemp = [];
     let tmpProject = null;
-    res.forEach((project) => {
+    res.docs.forEach((project) => {
       tmpProject = project.data();
       tmpProject.skills.forEach(async (skill) => {
         skillTemp.push(await dispatch("fetchSkill", { label: skill }));
@@ -30,7 +33,7 @@ export async function fetchAllProjects({ commit, dispatch }) {
     return projects;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans projet: " + e.message,
       color: "negative",
     });
   }
@@ -46,7 +49,7 @@ export async function fechtProject({ commit, dispatch }, { name }) {
     return res.docs[0].data();
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans projet: " + e.message,
       color: "negative",
     });
   }
@@ -65,7 +68,7 @@ export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
     res.forEach((project) => {
       tmpProject = project.data();
       tmpProject.skills.forEach(async (skill) => {
-        skillTemp.push(await dispatch("fetchSkill", { label: skill }));
+        skillTemp.push(await dispatch("fetchSkill", { name: skill }));
       });
       tmpProject.skills = skillTemp;
       projects.push(tmpProject);
@@ -74,7 +77,7 @@ export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
     return projects;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans projet: " + e.message,
       color: "negative",
     });
   }
@@ -123,7 +126,7 @@ export async function createProject({ commit, dispatch }, { project }) {
         }
       }
     }
-
+    project.imageName = project.image.name;
     project.image = await dispatch("uploadImage", {
       image: project.image,
     });
@@ -139,7 +142,32 @@ export async function createProject({ commit, dispatch }, { project }) {
     return projectRef;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans projet: " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function deleteProject({ commit, dispatch }, { name }) {
+  try {
+    console.log(name);
+    const q = await query(
+      collection(fire.firebasebd, "projects"),
+      where("name", "==", name)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    const proj = res.docs[0].data();
+    await dispatch("deleteImage", { image: proj.imageName });
+    await deleteDoc(doc(fire.firebasebd, "projects", id));
+    Notify.create({
+      message: "Le projet " + name + " a été supprimer !",
+      color: "warning",
+      textColor: "dark",
+    });
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans projet: " + e.message,
       color: "negative",
     });
   }

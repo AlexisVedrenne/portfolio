@@ -28,7 +28,7 @@ export async function createExperience({ commit }, { experience }) {
     return exRef;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans experience : " + e.message,
       color: "negative",
     });
   }
@@ -45,7 +45,7 @@ export async function fetchAllExperiences({ commit }) {
     return ex;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans experience : " + e.message,
       color: "negative",
     });
   }
@@ -61,7 +61,7 @@ export async function fetchExperience({ commit }, { titre }) {
     return res.docs[0].data();
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans experience : " + e.message,
       color: "negative",
     });
   }
@@ -83,7 +83,7 @@ export async function deleteExperience({ commit }, { titre }) {
     });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans experience : " + e.message,
       color: "negative",
     });
   }
@@ -105,7 +105,7 @@ export async function updateExperience({ commit }, { experience, lastTitre }) {
     });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans experience : " + e.message,
       color: "negative",
     });
   }

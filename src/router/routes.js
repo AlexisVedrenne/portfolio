@@ -100,6 +100,11 @@ const routes = [
         path: "experience/edit/:titre",
         component: () => import("pages/admin/experience/EditExperiencePro.vue"),
       },
+      {
+        name: "projectIndex",
+        path: "projects",
+        component: () => import("pages/admin/project/IndexProject.vue"),
+      },
     ],
   },
   {

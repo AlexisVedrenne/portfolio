@@ -15,7 +15,7 @@ export async function fetchImg({ commit }, { img }) {
     return url;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans storage : " + e.message,
       color: "negative",
     });
   }
@@ -33,7 +33,7 @@ export async function fetchVieo({ commit }, { video }) {
     return url;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans storage : " + e.message,
       color: "negative",
     });
   }
@@ -48,7 +48,7 @@ export async function uploadVideo({ commit, dispatch }, { video }) {
     return dispatch("fetchVieo", { video: upload.ref.name });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans storage : " + e.message,
       color: "negative",
     });
   }
@@ -68,7 +68,35 @@ export async function uploadImage({ commit, dispatch }, { image }) {
     return dispatch("fetchImg", { img: upload.ref.name });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans storage : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function deleteImage({ commit }, { image }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const folder = store.ref(storageRef, "images/" + image);
+    await store.deleteObject(folder);
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans storage : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function deleteVideo({ commit }, { video }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const folder = store.ref(storageRef, "videos/" + video);
+    await store.deleteObject(folder);
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans storage : " + e.message,
       color: "negative",
     });
   }

@@ -70,7 +70,7 @@ export default defineComponent({
         {
           title: "Projets",
           icon: "folder",
-          link: { name: "addProject" },
+          link: { name: "projectIndex" },
         },
       ],
     };

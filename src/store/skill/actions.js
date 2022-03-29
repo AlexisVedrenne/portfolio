@@ -24,7 +24,7 @@ export async function fetchSkill({ commit }, { label }) {
     return res.docs[0].data();
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans skill : " + e.message,
       color: "negative",
     });
   }
@@ -45,7 +45,7 @@ export async function fetchAllSkills({ commit }) {
     return skills;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans skill : " + e.message,
       color: "negative",
     });
   }
@@ -62,7 +62,7 @@ export async function createSkills({ commit }, { skill }) {
     return skillRef;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans skill : " + e.message,
       color: "negative",
     });
   }
@@ -84,7 +84,7 @@ export async function deleteSkill({ commit }, { label }) {
     });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans skill : " + e.message,
       color: "negative",
     });
   }
@@ -106,7 +106,7 @@ export async function updateSkill({ commit }, { skill, lastLabel }) {
     });
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite : " + e.message,
+      message: "Une erreur s'est produite dans skill : " + e.message,
       color: "negative",
     });
   }
