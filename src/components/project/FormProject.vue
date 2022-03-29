@@ -38,6 +38,7 @@
       ></q-select>
 
       <q-file
+        v-if="!update"
         outlined
         required
         v-model="proj.image"
@@ -215,7 +216,7 @@
       <div class="row justify-center">
         <q-btn
           :loading="loading"
-          label="Ajouter le projet"
+          :label="!update ? 'Ajouter le projet' : 'Mettre à jour le projet'"
           type="submit"
           color="accent"
           outline
@@ -232,6 +233,14 @@ export default {
     project: {
       type: Object,
       required: true,
+    },
+    update: {
+      required: false,
+      default: false,
+    },
+    lastName: {
+      required: false,
+      type: String,
     },
   },
   data() {
@@ -251,9 +260,24 @@ export default {
   },
   methods: {
     async onSubmit() {
+      if (!this.update) {
+        await this.addProject();
+      } else {
+        await this.updateProject();
+      }
+    },
+    async addProject() {
       this.loading = true;
       let rep = await this.$store.dispatch("createProject", {
         project: this.proj,
+      });
+      this.loading = false;
+    },
+    async updateProject() {
+      this.loading = true;
+      let rep = await this.$store.dispatch("updateProject", {
+        project: this.proj,
+        lastName: this.lastName,
       });
       this.loading = false;
     },

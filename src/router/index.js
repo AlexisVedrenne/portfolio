@@ -38,7 +38,7 @@ export default route(function (/* { store, ssrContext } */) {
 
   Router.beforeEach(async (to, from, next) => {
     if (to.name === "login" && fire.auth.currentUser) {
-      next({ name: "addSkill" });
+      next({ name: "skillsIndex" });
     }
     if (to.meta.mustBeLogged && !fire.auth.currentUser) {
       next({ name: "login" });

@@ -150,7 +150,6 @@ export async function createProject({ commit, dispatch }, { project }) {
 
 export async function deleteProject({ commit, dispatch }, { name }) {
   try {
-    console.log(name);
     const q = await query(
       collection(fire.firebasebd, "projects"),
       where("name", "==", name)
@@ -163,6 +162,69 @@ export async function deleteProject({ commit, dispatch }, { name }) {
     Notify.create({
       message: "Le projet " + name + " a été supprimer !",
       color: "warning",
+      textColor: "dark",
+    });
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans projet: " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function updateProject({ commit }, { project, lastName }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "projects"),
+      where("name", "==", lastName)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    if (project.details.state) {
+      let tempFileContext = project.details.context.file;
+      let tempFileBaniere = project.details.baniere;
+      let tempFile = null;
+      tempFileBaniere = await dispatch("uploadImage", {
+        image: tempFileBaniere,
+      });
+      console.log(tempFileBaniere);
+      project.details.baniere = tempFileBaniere;
+      if (tempFileContext) {
+        if (tempFileContext.type.includes("image")) {
+          tempFile = await dispatch("uploadImage", {
+            image: tempFileContext,
+          });
+        } else {
+          tempFile = await dispatch("uploadVideo", {
+            video: tempFileContext,
+          });
+        }
+        project.details.context.file = tempFile;
+      }
+      for (let i = 0; i < project.details.sections.length; i++) {
+        let tempFile = project.details.sections[i].file;
+        let img = null;
+        if (tempFile) {
+          if (tempFile.type.includes("image")) {
+            img = await dispatch("uploadImage", {
+              image: tempFile,
+            });
+            project.details.sections[i].file = img;
+            project.details.sections[i].fileType = tempFile.type;
+          } else {
+            img = await dispatch("uploadVideo", {
+              video: tempFile,
+            });
+            project.details.sections[i].file = img;
+            project.details.sections[i].fileType = tempFile.type;
+          }
+        }
+      }
+    }
+    await setDoc(doc(fire.firebasebd, "projects", id), project);
+    Notify.create({
+      message: "Le projet " + lastName + " a bien été modifié :",
+      color: "info",
       textColor: "dark",
     });
   } catch (e) {

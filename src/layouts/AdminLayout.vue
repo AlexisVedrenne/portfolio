@@ -93,7 +93,7 @@ export default defineComponent({
         {
           title: "Projets",
           icon: "folder",
-          link: { name: "projectIndex" },
+          link: { name: "projectsIndex" },
         },
       ],
     };
