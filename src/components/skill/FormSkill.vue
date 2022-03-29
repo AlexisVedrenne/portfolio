@@ -1,7 +1,7 @@
 <template>
   <div>
     <h6 class="text-center">Nom de la compétences : {{ skill.label }}</h6>
-    <q-form @submit="addSkill">
+    <q-form @submit="submit">
       <div class="container">
         <div class="row justify-center">
           <div class="col q-mr-lg">
@@ -63,8 +63,8 @@
                 type="submit"
                 outline
                 color="accent"
-                >Ajouter une compétence</q-btn
-              >
+                :label="!update ? 'Ajouter la compétence' : 'Mettre à jour la compétence'"
+              />
             </div>
           </div>
         </div>
@@ -80,6 +80,13 @@ export default {
       type: Object,
       required: true,
     },
+    update: {
+      required: false,
+      default: false,
+    },
+    lastLabel: {
+      required: false,
+    },
   },
   data() {
     return {
@@ -89,11 +96,26 @@ export default {
     };
   },
   methods: {
+    async submit() {
+      if (!this.update) {
+        await this.addSkill();
+      } else {
+        await this.updateSkill();
+      }
+    },
     async addSkill() {
       this.loading = true;
       let rep = await this.$store.dispatch("createSkills", { skill: this.ski });
       this.loading = false;
       this.$router.push({ name: "skillsIndex" });
+    },
+    async updateSkill() {
+      this.loading = true;
+      let rep = await this.$store.dispatch("updateSkill", {
+        skill: this.ski,
+        lastLabel: this.lastLabel,
+      });
+      this.loading = false;
     },
   },
 };

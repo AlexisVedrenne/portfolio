@@ -84,6 +84,11 @@ const routes = [
         path: "skills",
         component: () => import("pages/admin/skill/IndexSkill.vue"),
       },
+      {
+        name: "editSkill",
+        path: "skill/edit/:label",
+        component: () => import("pages/admin/skill/EditSkill.vue"),
+      },
     ],
   },
   {

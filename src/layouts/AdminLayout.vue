@@ -60,7 +60,7 @@ export default defineComponent({
         {
           title: "Comptétence",
           icon: "workspace_premium",
-          link: { name: "addSkill" },
+          link: { name: "skillsIndex" },
         },
         {
           title: "Exeperience",

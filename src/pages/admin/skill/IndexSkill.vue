@@ -78,7 +78,15 @@
                 icon="delete"
                 @click="confirm(skill.label)"
               />
-              <q-btn class="gt-xs" size="12px" flat dense round icon="edit" />
+              <q-btn
+                :href="'/#/admin/skill/edit/' + skill.label"
+                class="gt-xs"
+                size="12px"
+                flat
+                dense
+                round
+                icon="edit"
+              />
               <q-btn class="lt-sm" size="12px" flat dense round icon="more_vert" />
             </div>
           </q-item-section>

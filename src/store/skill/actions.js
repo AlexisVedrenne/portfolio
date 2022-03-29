@@ -9,6 +9,7 @@ import {
   where,
   deleteDoc,
   doc,
+  setDoc,
 } from "firebase/firestore";
 import { Notify } from "quasar";
 import "core-js/es/array";
@@ -75,10 +76,32 @@ export async function deleteSkill({ commit }, { label }) {
     );
     const res = await getDocs(q);
     const id = res.docs[0].ref.id;
-    deleteDoc(doc(fire.firebasebd, "skills", id));
+    await deleteDoc(doc(fire.firebasebd, "skills", id));
     Notify.create({
       message: "La compétence " + label + " a été supprimer !",
       color: "warning",
+      textColor: "dark",
+    });
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function updateSkill({ commit }, { skill, lastLabel }) {
+  try {
+    const q = await query(
+      collection(fire.firebasebd, "skills"),
+      where("label", "==", lastLabel)
+    );
+    const res = await getDocs(q);
+    const id = res.docs[0].ref.id;
+    await setDoc(doc(fire.firebasebd, "skills", id), skill);
+    Notify.create({
+      message: "La compétence " + lastLabel + " a été mise à jour !",
+      color: "info",
       textColor: "dark",
     });
   } catch (e) {

@@ -83,7 +83,7 @@ export default {
       this.loading = false;
       let user = this.$store.getters.getCurrentUser;
       if (user) {
-        this.$router.push({ name: "addSkill" });
+        this.$router.push({ name: "skillsIndex" });
       }
     },
   },
