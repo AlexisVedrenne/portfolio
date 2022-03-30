@@ -58,6 +58,20 @@
               <p>{{ link.title }}</p>
             </q-item-section>
           </q-item>
+          <q-item
+            icon="logout"
+            name="deconnexion"
+            label="Déconnexion"
+            class="hn-link"
+            active-class="secondary"
+            @click="logOut"
+            clickable
+          >
+            <q-item-section avatar class="items-center">
+              <q-icon name="logout" />
+              <p>Déconnexion</p>
+            </q-item-section>
+          </q-item>
         </q-list>
       </q-scroll-area>
     </q-drawer>
