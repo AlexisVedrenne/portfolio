@@ -172,7 +172,10 @@ export async function deleteProject({ commit, dispatch }, { name }) {
   }
 }
 
-export async function updateProject({ commit }, { project, lastName }) {
+export async function updateProject(
+  { commit, dispatch },
+  { project, lastName }
+) {
   try {
     const q = await query(
       collection(fire.firebasebd, "projects"),
