@@ -16,7 +16,13 @@
         <q-item-section>{{ image.name }}</q-item-section>
         <q-item-section class="row"
           ><q-btn class="col" label="Vérifier l'utilisation" flat />
-          <q-btn class="col" color="negative" label="Supprimer" flat />
+          <q-btn
+            @click="deleteImage(image.name)"
+            class="col"
+            color="negative"
+            label="Supprimer"
+            flat
+          />
         </q-item-section>
       </q-item>
     </q-list>
@@ -34,13 +40,22 @@
     <div
       v-for="(video, index) in fichiersVideo.videos"
       :key="index"
-      class="col-md-4 col-sm-5"
+      class="col-md-4 col-sm-5 col-xs-10"
     >
       <q-card>
         <q-card-section>{{ video.name }}</q-card-section>
         <q-card-section
           ><q-video :ratio="16 / 9" :src="fichiersVideo.urls[index]"
         /></q-card-section>
+        <q-card-section>
+          <q-btn
+            @click="deleteVideo(video.name)"
+            class="col"
+            color="negative"
+            label="Supprimer"
+            flat
+          />
+        </q-card-section>
       </q-card>
     </div>
   </div>
@@ -51,9 +66,11 @@
   </div>
 </template>
 <script>
+import { useQuasar } from "quasar";
 export default {
   data() {
     return {
+      utils: useQuasar(),
       fichiersImages: {
         images: [],
         urls: [],
@@ -65,12 +82,63 @@ export default {
     };
   },
   async mounted() {
-    let fichiersImages = await this.$store.dispatch("fetchAllImages");
-    this.fichiersImages.images = fichiersImages.images;
-    this.fichiersImages.urls = fichiersImages.urls;
-    let fichiersVideo = await this.$store.dispatch("fetchAllVideo");
-    this.fichiersVideo.videos = fichiersVideo.videos;
-    this.fichiersVideo.urls = fichiersVideo.urls;
+    await this.refresh();
+  },
+  methods: {
+    async refresh() {
+      let fichiersImages = await this.$store.dispatch("fetchAllImages");
+      this.fichiersImages.images = fichiersImages.images;
+      this.fichiersImages.urls = fichiersImages.urls;
+      let fichiersVideo = await this.$store.dispatch("fetchAllVideo");
+      this.fichiersVideo.videos = fichiersVideo.videos;
+      this.fichiersVideo.urls = fichiersVideo.urls;
+    },
+    async deleteImage(image) {
+      this.utils
+        .dialog({
+          title: "Attention !",
+          message: "Vous etes sur de vouloir supprimer l'image " + image + " ?",
+          cancel: true,
+          persistent: true,
+          ok: {
+            label: "Supprimer",
+            color: "negative",
+            flat: true,
+          },
+          cancel: {
+            label: "fermer",
+            flat: true,
+            color: "secondary",
+          },
+        })
+        .onOk(async () => {
+          await this.$store.dispatch("deleteImage", { image: image });
+          await this.refresh();
+        });
+    },
+    async deleteVideo(video) {
+      this.utils
+        .dialog({
+          title: "Attention !",
+          message: "Vous etes sur de vouloir supprimer la vidéo " + video + " ?",
+          cancel: true,
+          persistent: true,
+          ok: {
+            label: "Supprimer",
+            color: "negative",
+            flat: true,
+          },
+          cancel: {
+            label: "fermer",
+            flat: true,
+            color: "secondary",
+          },
+        })
+        .onOk(async () => {
+          await this.$store.dispatch("deleteVideo", { video: video });
+          await this.refresh();
+        });
+    },
   },
 };
 </script>
