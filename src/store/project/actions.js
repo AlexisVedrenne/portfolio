@@ -206,7 +206,7 @@ export async function updateProject(
       for (let i = 0; i < project.details.sections.length; i++) {
         let tempFile = project.details.sections[i].file;
         let img = null;
-        if (tempFile) {
+        if ((typeof tempFile).includes("File")) {
           if (tempFile.type.includes("image")) {
             img = await dispatch("uploadImage", {
               image: tempFile,
