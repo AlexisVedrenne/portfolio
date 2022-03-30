@@ -110,6 +110,11 @@ const routes = [
         path: "project/edit/:name",
         component: () => import("pages/admin/project/EditProject.vue"),
       },
+      {
+        name: "storageIndex",
+        path: "storage",
+        component: () => import("pages/admin/storage/IndexStorage.vue"),
+      },
     ],
   },
   {

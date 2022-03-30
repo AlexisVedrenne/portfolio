@@ -95,6 +95,11 @@ export default defineComponent({
           icon: "folder",
           link: { name: "projectsIndex" },
         },
+        {
+          title: "Fichiers",
+          icon: "description",
+          link: { name: "storageIndex" },
+        },
       ],
     };
   },

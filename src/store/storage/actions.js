@@ -101,3 +101,43 @@ export async function deleteVideo({ commit }, { video }) {
     });
   }
 }
+
+export async function fetchAllImages({ dispatch }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const folder = store.ref(storageRef, "images/");
+    const images = await store.listAll(folder);
+    let items = images.items;
+    let urls = [];
+    for (let i = 0; i < items.length; i++) {
+      urls.push(await dispatch("fetchImg", { img: items[i].name }));
+    }
+    return { images: images.items, urls: urls };
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans storage : " + e.message,
+      color: "negative",
+    });
+  }
+}
+
+export async function fetchAllVideo({ dispatch }) {
+  try {
+    const storage = fire.storage;
+    const storageRef = store.ref(storage);
+    const folder = store.ref(storageRef, "videos/");
+    const videos = await store.listAll(folder);
+    let items = videos.items;
+    let urls = [];
+    for (let i = 0; i < items.length; i++) {
+      urls.push(await dispatch("fetchVieo", { video: items[i].name }));
+    }
+    return { videos: videos.items, urls: urls };
+  } catch (e) {
+    Notify.create({
+      message: "Une erreur s'est produite dans storage : " + e.message,
+      color: "negative",
+    });
+  }
+}
