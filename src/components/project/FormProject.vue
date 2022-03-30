@@ -77,7 +77,9 @@
           label="Image ou vidéo pour la banière"
           v-model="proj.details.baniere"
           accept="image/*"
+          v-if="!proj.details.baniere"
         >
+          <hr />
           <template v-slot:prepend>
             <q-icon name="attach_file" />
           </template>
@@ -128,17 +130,29 @@
             ['viewsource'],
           ]"
         />
-        <q-file
-          outlined
-          label="Image ou vidéo pour le context"
-          v-model="proj.details.context.file"
-          accept="image/*"
-        >
-          <template v-slot:prepend>
-            <q-icon name="attach_file" />
-          </template>
-        </q-file>
-
+        <div class="row jutify-center">
+          <q-file
+            class="col"
+            outlined
+            label="Image ou vidéo pour le context"
+            v-model="proj.details.context.file"
+            accept="image/*"
+            v-if="!proj.details.context.file"
+          >
+            <template v-slot:prepend>
+              <q-icon name="attach_file" />
+            </template>
+          </q-file>
+          <q-btn
+            class="col"
+            @click="deleteImage('contexte')"
+            flat
+            color="negative"
+            label="Supprimer le fichier"
+            v-if="proj.details.context.file"
+          />
+        </div>
+        <hr />
         <section class="columns justify-center">
           <article
             v-for="(section, index) in proj.details.sections"
@@ -146,7 +160,7 @@
             class="row"
           >
             <div class="col">
-              <p class="text-h6">Section numéro {{ index }}</p>
+              <p class="text-h6">Section n°{{ index }} : {{ section.titre }}</p>
               <q-input
                 v-model="section.titre"
                 class="q-mb-md"
@@ -199,17 +213,38 @@
                   ['viewsource'],
                 ]"
               />
-              <q-file
-                outlined
-                :label="'Image ou vidéo pour la section ' + index"
-                v-model="section.file"
-                accept="image/*,.mp4"
-              >
-                <template v-slot:prepend>
-                  <q-icon name="attach_file" />
-                </template>
-              </q-file>
+              <div class="row">
+                <q-file
+                  outlined
+                  :label="'Image ou vidéo pour la section ' + index"
+                  v-model="section.file"
+                  accept="image/*,.mp4"
+                  v-if="!section.file"
+                  class="col"
+                >
+                  <template v-slot:prepend>
+                    <q-icon name="attach_file" />
+                  </template>
+                </q-file>
+                <q-btn
+                  class="col"
+                  @click="deleteImage(index)"
+                  flat
+                  color="negative"
+                  label="Supprimer le fichier"
+                  v-if="section.file"
+                />
+              </div>
             </div>
+            <div class="col">
+              <q-btn
+                @click="deleteSection(index)"
+                color="negative"
+                flat
+                label="Supprimer la section"
+              />
+            </div>
+            <hr />
           </article>
         </section>
       </section>
@@ -288,9 +323,69 @@ export default {
         file: null,
         fileType: null,
       });
-      this.utils.notify(
-        "Section numéro " + (this.proj.details.sections.length - 1) + " ajouté"
-      );
+      this.utils.notify({
+        message: "Section numéro " + (this.proj.details.sections.length - 1) + " ajouté",
+        color: "info",
+        textColor: "dark",
+      });
+    },
+    deleteImage(index) {
+      this.utils
+        .dialog({
+          title: "Attention !",
+          message: "Vous etes sur de vouloir supprimer l'image ?",
+          cancel: true,
+          persistent: true,
+          ok: {
+            label: "Supprimer",
+            color: "negative",
+            flat: true,
+          },
+          cancel: {
+            label: "fermer",
+            flat: true,
+            color: "secondary",
+          },
+        })
+        .onOk(async () => {
+          if (!index == "contexte") {
+            this.proj.details.sections[index].file = null;
+            this.utils.notify({
+              message: "Image supprimée !",
+              color: "warning",
+              textColor: "dark",
+            });
+          } else {
+            this.proj.details.context.file = null;
+          }
+        });
+    },
+    deleteSection(index) {
+      this.utils
+        .dialog({
+          title: "Attention !",
+          message: "Vous etes sur de vouloir supprimer la section numéro " + index + " ?",
+          cancel: true,
+          persistent: true,
+          ok: {
+            label: "Supprimer",
+            color: "negative",
+            flat: true,
+          },
+          cancel: {
+            label: "fermer",
+            flat: true,
+            color: "secondary",
+          },
+        })
+        .onOk(async () => {
+          this.proj.details.sections.splice(this.proj.details.sections.indexOf(index));
+          this.utils.notify({
+            message: "Section numéro " + index + " supprimée",
+            color: "warning",
+            textColor: "dark",
+          });
+        });
     },
   },
 };

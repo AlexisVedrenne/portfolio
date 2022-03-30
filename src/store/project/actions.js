@@ -190,9 +190,8 @@ export async function updateProject(
       tempFileBaniere = await dispatch("uploadImage", {
         image: tempFileBaniere,
       });
-      console.log(tempFileBaniere);
       project.details.baniere = tempFileBaniere;
-      if (tempFileContext) {
+      if ((typeof tempFileContext).includes("File")) {
         if (tempFileContext.type.includes("image")) {
           tempFile = await dispatch("uploadImage", {
             image: tempFileContext,
