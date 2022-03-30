@@ -65,10 +65,10 @@ export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
     let projects = [];
     let skillTemp = [];
     let tmpProject = null;
-    res.forEach((project) => {
+    res.docs.forEach((project) => {
       tmpProject = project.data();
       tmpProject.skills.forEach(async (skill) => {
-        skillTemp.push(await dispatch("fetchSkill", { name: skill }));
+        skillTemp.push(await dispatch("fetchSkill", { label: skill }));
       });
       tmpProject.skills = skillTemp;
       projects.push(tmpProject);
@@ -77,7 +77,7 @@ export async function fetchAllProjectBySkill({ dispatch }, { skillName }) {
     return projects;
   } catch (e) {
     Notify.create({
-      message: "Une erreur s'est produite dans projet: " + e.message,
+      message: "Une erreur s'est produite dans projet: " + e,
       color: "negative",
     });
   }
