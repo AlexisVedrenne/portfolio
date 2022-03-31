@@ -348,7 +348,7 @@ export default {
           },
         })
         .onOk(async () => {
-          if (!index == "contexte") {
+          if (index != "contexte") {
             this.proj.details.sections[index].file = null;
             this.utils.notify({
               message: "Image supprimée !",
