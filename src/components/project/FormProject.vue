@@ -72,18 +72,30 @@
         <div class="row justify-center q-mb-sm">
           <q-btn @click="addSection" push color="primary" label="Ajouter une section" />
         </div>
-        <q-file
-          outlined
-          label="Image ou vidéo pour la banière"
-          v-model="proj.details.baniere"
-          accept="image/*"
-          v-if="!proj.details.baniere"
-        >
-          <hr />
-          <template v-slot:prepend>
-            <q-icon name="attach_file" />
-          </template>
-        </q-file>
+        <h6>Image de la banière</h6>
+        <div class="row">
+          <q-file
+            class="col-md"
+            outlined
+            label="Image ou vidéo pour la banière"
+            v-model="proj.details.baniere"
+            accept="image/*"
+            v-if="!proj.details.baniere"
+          >
+            <hr />
+            <template v-slot:prepend>
+              <q-icon name="attach_file" />
+            </template>
+          </q-file>
+          <q-btn
+            class="col-md"
+            @click="deleteImage('baniere')"
+            flat
+            color="negative"
+            label="Supprimer la banière"
+            v-if="proj.details.baniere"
+          />
+        </div>
         <p class="text-h6">Ecire le context du projet</p>
         <q-editor
           class="q-mb-md"
@@ -348,15 +360,17 @@ export default {
           },
         })
         .onOk(async () => {
-          if (index != "contexte") {
+          if (index != "contexte" && index != "baniere") {
             this.proj.details.sections[index].file = null;
             this.utils.notify({
               message: "Image supprimée !",
               color: "warning",
               textColor: "dark",
             });
-          } else {
+          } else if (index == "contexte") {
             this.proj.details.context.file = null;
+          } else {
+            this.proj.details.baniere = null;
           }
         });
     },
