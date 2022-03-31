@@ -4,10 +4,10 @@
     <q-form @submit="submit">
       <div class="container">
         <div class="row justify-center">
-          <div class="col q-mr-lg">
+          <div class="col-md q-mr-lg">
             <q-color v-model="ski.color" class="my-picker" />
           </div>
-          <div class="col-8">
+          <div class="col-md-8 col-sm-8">
             <div class="row justify-center">
               <div class="col q-mb-sm">
                 <q-input

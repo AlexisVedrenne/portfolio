@@ -22,6 +22,7 @@
       <q-intersection
         :hidden="hidden"
         transition="scale"
+        once
         v-for="(experience, index) in experiences"
         :key="index"
       >

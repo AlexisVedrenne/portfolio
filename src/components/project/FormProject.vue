@@ -159,7 +159,7 @@
             :key="index"
             class="row"
           >
-            <div class="col">
+            <div class="col-md">
               <p class="text-h6">Section n°{{ index }} : {{ section.titre }}</p>
               <q-input
                 v-model="section.titre"
@@ -236,7 +236,7 @@
                 />
               </div>
             </div>
-            <div class="col">
+            <div class="col-md">
               <q-btn
                 @click="deleteSection(index)"
                 color="negative"
