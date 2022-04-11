@@ -1,6 +1,6 @@
 <template>
   <div :style="utils.screen.gt.md ? 'margin-right: 400px; margin-left: 400px' : ''">
-    <q-intersection transition="scale">
+    <q-intersection once transition="scale">
       <h6 class="text-center q-mt-lg q-mb-lg">Visualisation de mon CV</h6>
     </q-intersection>
     <div class="row justify-center">
@@ -21,31 +21,12 @@
       <q-card :hidden="hidden" class="q-mb-l" id="pdf">
         <div class="bg-grey column justify-end q-mr-md q-ml-md" style="height: 80px">
           <h6 class="text-right text-bold q-mt-sm q-mr-sm col text-uppercase">
-            Poste recherché : Une alternance
+            Poste recherché : Développeur (en Alternance)
           </h6>
         </div>
         <q-card-section class="row">
           <div class="col q-ml-lg">
             <h3 class="text-bold q-ma-none q-mt-lg">Alexis Vedrenne</h3>
-            <q-separator class="bg-dark" style="height: 5px" spaced />
-            <h5 class="text-bold q-ma-none q-mb-sm q-mt-md">FORMATIONS</h5>
-            <q-list
-              class="bg-grey-2"
-              v-for="(formation, index) in formations"
-              :key="index"
-            >
-              <q-item :to="{ name: 'aboutMe' }">
-                <q-item-section style="font-size: 17px">
-                  <q-item-label>{{ formation.ligne }}</q-item-label>
-                  <q-item-label lines="2"
-                    ><strong>{{ formation.lieux }} - </strong
-                    >{{ formation.ligne2 }}</q-item-label
-                  >
-                </q-item-section>
-              </q-item>
-
-              <q-separator spaced inset />
-            </q-list>
             <q-separator class="bg-dark" style="height: 5px" spaced />
             <h5 class="text-bold q-ma-none q-mt-md q-mb-md">PARCOURS PROFESSIONNEL</h5>
             <q-list class="bg-grey-2" v-for="(parcour, index) in parcours" :key="index">
@@ -66,6 +47,25 @@
                   >
                     {{ index + 1 }} : {{ tache }}
                   </p>
+                </q-item-section>
+              </q-item>
+
+              <q-separator spaced inset />
+            </q-list>
+            <q-separator class="bg-dark" style="height: 5px" spaced />
+            <h5 class="text-bold q-ma-none q-mb-sm q-mt-md">FORMATIONS</h5>
+            <q-list
+              class="bg-grey-2"
+              v-for="(formation, index) in formations"
+              :key="index"
+            >
+              <q-item :to="{ name: 'aboutMe' }">
+                <q-item-section style="font-size: 17px">
+                  <q-item-label>{{ formation.ligne }}</q-item-label>
+                  <q-item-label lines="2"
+                    ><strong>{{ formation.lieux }} - </strong
+                    >{{ formation.ligne2 }}</q-item-label
+                  >
                 </q-item-section>
               </q-item>
 
